@@ -1,9 +1,11 @@
 import React from 'react'
+import Switch from '../components/Switch'
 
 function HomePage() {
   return (
-    <div className='home w-full flex justify-center p-20'>
-        <h1 className='text-white text-[13rem] text3d'>NINTENDO</h1>
+    <div className='home w-full flex flex-col items-center justify-center p-20 text-white'>
+        <h1 className='text-[13rem]'>NINTENDO</h1>
+        <Switch />
     </div>
   )
 }
