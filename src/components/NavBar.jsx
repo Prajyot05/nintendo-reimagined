@@ -14,7 +14,7 @@ function NavBar() {
             </div>
             <div className="search flex items-center justify-center bg-[#1c1d23] px-10 h-10 rounded-[30px] border border-[#32353c]">
                 <img src="/assets/search_left.png" alt="" />
-                <input type="text" placeholder='Search Games...' class="bg-transparent text-sm px-3 focus:outline-none hover:outline-none" />
+                <input type="text" placeholder='Search Games...' className="bg-transparent text-sm px-3 focus:outline-none hover:outline-none" />
                 <img src="/assets/search_right.png" alt="" />
             </div>
         </div>

@@ -24,3 +24,7 @@ html, body {
   font-family: "Jost", sans-serif;
   font-weight: 800;
 }
+
+canvas{
+  height: 40vh;
+}
