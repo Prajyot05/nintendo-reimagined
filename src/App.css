@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'montserrat';
+}
+ 
+html, body {
+  height: 100%;
+  width: 100%;
+}
+.home > h1{
+  font-weight: bold;
+  background: linear-gradient(to right, #46BADD, #ED5F55);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-family: "Jost", sans-serif;
+  font-weight: 800;
+}
