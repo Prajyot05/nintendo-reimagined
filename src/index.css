@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'montserrat';
+  }
+
 html,
 body,
 #root
@@ -20,4 +27,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #cdcbca;
+  background-color: #0d0d0d;
+}
+
+.home > h1{
+    font-weight: bold;
+    background: linear-gradient(to right, #46BADD, #ED5F55);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-family: "Jost", sans-serif;
+    font-weight: 700;
 }
