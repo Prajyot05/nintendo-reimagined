@@ -15,6 +15,14 @@ html, body {
   height: 100%;
   width: 100%;
 }
+
+.home{
+  background: url(/assets/grid.svg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .home > h1{
   font-weight: bold;
   background: linear-gradient(to right, #46BADD, #ED5F55);
