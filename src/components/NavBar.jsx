@@ -1,8 +1,6 @@
-import React from 'react'
-
 function NavBar() {
   return (
-    <nav className='text-white flex w-full p-8 justify-between'>
+    <nav className='text-white flex w-screen p-4 items-center justify-between'>
         <div className="nav-left flex items-center text-lg gap-20 w-1/3">
             <div className="nav-games flex items-center">
                 <img src="/assets/games.png" alt="" />
