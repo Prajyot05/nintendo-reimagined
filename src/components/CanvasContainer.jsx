@@ -7,7 +7,7 @@ const CanvasContainer = () => {
   return (
     <Canvas>
         <ambientLight intensity={3}/>
-        <OrbitControls/>
+        {/* <OrbitControls/> */}
         <Nintendo_switch/>
     </Canvas>
   )

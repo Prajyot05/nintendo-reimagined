@@ -6,8 +6,8 @@ const App = () => {
 
   return (
     <>
-      <div className=" fixed w-screen h-full z-[99]">
-        <CanvasContainer/>
+      <div className="fixed w-screen h-full z-[99]">
+        {/* <CanvasContainer/> */}
       </div>
       
       <NavBar/>
