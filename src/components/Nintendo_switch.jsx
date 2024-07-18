@@ -18,7 +18,7 @@ export default function Nintendo_switch(props) {
 
   const nSwitch = useRef();
   const {camera} = useThree();
-  console.log(camera.position)
+  // console.log(camera.position)
   // const scroll = useScroll();
   // const t1 = useRef();
 

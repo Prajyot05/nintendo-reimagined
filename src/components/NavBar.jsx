@@ -1,7 +1,7 @@
 function NavBar() {
   return (
-    <nav className='text-white flex w-screen p-4 items-center justify-between'>
-        <div className="nav-left flex items-center text-lg gap-20 w-1/3">
+    <nav className='text-white flex w-full overflow-x-hidden p-4 items-center justify-between'>
+        <div className="nav-left flex items-center text-lg gap-20 w-[30%]">
             <div className="nav-games flex items-center">
                 <img src="/assets/games.png" alt="" />
                 <h4>Games</h4>
@@ -16,10 +16,10 @@ function NavBar() {
                 <img src="/assets/search_right.png" alt="" />
             </div>
         </div>
-        <div className="nav-mid flex items-center w-1/3 justify-center">
+        <div className="nav-mid flex items-center w-[30%] justify-center">
             <img src="/assets/switch_logo.png" alt="" />
         </div>
-        <div className="nav-right flex items-center w-1/3 justify-end gap-10">
+        <div className="nav-right flex items-center w-[30%] justify-center gap-10">
             <div className="shop">
                 <img src="/assets/shopping_bag.png" alt="" />
             </div>

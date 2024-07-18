@@ -11,8 +11,8 @@ function SwitchNav() {
         </div>
         <div className="switch-nav-right flex gap-10 items-center">
             <h4 className="switch-nav-battery">11:54 PM</h4>
-            <img src="/assets/wifi.png" alt="" />
-            <img src="/assets/battery.png" alt="" />
+            <img src="/assets/wifi.svg" alt="" />
+            <img src="/assets/battery.svg" alt="" />
         </div>
     </div>
   )

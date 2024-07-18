@@ -1,32 +1,23 @@
-<<<<<<< HEAD
-import NavBar from './components/NavBar'
-import HomePage from './pages/HomePage'
-import Page2 from './pages/Page2'
-=======
 import NavBar from "./components/NavBar"
 import HomePage from "./components/HomePage"
 import CanvasContainer from "./components/CanvasContainer"
->>>>>>> Sahil-main
+import Page2 from "./pages/Page2"
+import { ReactLenis, useLenis } from 'lenis/react'
 
 const App = () => {
-
+  const lenis = useLenis(({ scroll }) => {
+    // called every scroll
+  })
   return (
-<<<<<<< HEAD
-    <div className='app bg-black min-h-screen'>
-      <NavBar />
-      <div className="main">
-        <HomePage />
-        <Page2 />
-=======
-    <>
-      <div className="fixed w-screen h-full z-[99]">
-        {/* <CanvasContainer/> */}
->>>>>>> Sahil-main
+    <ReactLenis root>
+      <div className="fixed hidden w-screen h-full z-[999]">
+        <CanvasContainer/>
       </div>
       
       <NavBar/>
       <HomePage/>
-    </>
+      <Page2 />
+    </ReactLenis>
   )
 }
 
