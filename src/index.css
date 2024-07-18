@@ -19,6 +19,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #cdcbca;
   background-color: #0d0d0d;
+  overflow-x: hidden;
 }
 
 .home > h1{
