@@ -1,6 +1,6 @@
 function NavBar() {
   return (
-    <nav className='text-white flex w-screen p-4 items-center justify-end'>
+    <nav className='text-white flex w-screen p-4 justify-center'>
         <div className="nav-left flex items-center text-lg gap-20 w-1/3">
             <div className="nav-games flex items-center">
                 <img src="/assets/games.png" alt="" />

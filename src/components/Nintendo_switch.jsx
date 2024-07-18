@@ -8,46 +8,162 @@ Source: https://sketchfab.com/3d-models/nintendo-switch-b94e6a6a8c564fee81c2d794
 Title: Nintendo Switch
 */
 
-import { useGLTF, useScroll } from '@react-three/drei'
+import { Environment, useGLTF, useScroll } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber';
-import { useLayoutEffect, useRef } from 'react'
+import { useEffect, useRef, useState, useLayoutEffect } from 'react'
+import { useControls } from "leva";
 import gsap from 'gsap';
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+
+
 
 export default function Nintendo_switch(props) {
   const { nodes, materials } = useGLTF('/models/switch.gltf')
 
   const nSwitch = useRef();
-  const {camera} = useThree();
-  console.log(camera.position)
-  // const scroll = useScroll();
-  // const t1 = useRef();
+  const { scene, camera } = useThree();
+  const tl = gsap.timeline();
 
-  // useFrame((state, delta) => {
-  //   t1.current.seek(scroll.offset * t1.current.duration())
-  // })
 
-  // useLayoutEffect(() => {
-  //   t1.current = gsap.timeline({
-  //     defaults: {
-  //       duration: 2,
-  //       ease: 'power1.inOut'
-  //     }
-  //   })
-  //   .to(nSwitch.current.scale, { x: 5, y: 5, z: 5 }, 2)  // Scaling to 5
-  //   .to(nSwitch.current.position, { x: 1, y: 0, z: 0 }, 4)  // Translating to position (1, 0, 0)
-  //   .to(nSwitch.current.position, { x: -1, y: 0, z: 0 }, 6)
-  //   .to(nSwitch.current.scale, {x:1, y:1, z:1}, 8)
-  //   .to(nSwitch.current.position, { x: 0, y: 0, z: 0 }, 8); // Translating to the original position (0, 0, 0)
-  // }, []);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (event) => {
+    setMousePosition({
+      x: (event.clientX / window.innerWidth) * 2 - 1,
+      y: (event.clientY / window.innerHeight) * 2 + 1,
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
   
+
+  // // ----- used for getting the position for the shoes ----
+  // const { cameraPosition, scenePosition, sceneRotation } = useControls({
+  // 	cameraPosition: {
+  // 		value: {
+  // 			x: -1.100000000000002,
+  //       y: -10.549999999999978,
+  //       z: 0.050000000000000044,
+  // 		},
+  // 		step: 0.05,
+  // 	},
+  // 	scenePosition: {
+  // 		value: { x:0.35,y:-8.199999999999987,z:-0.10000000000000052 },
+  // 		step: 0.05,
+  // 	},
+
+  // 	sceneRotation: {
+  // 		value: { x:-0.26000000000001094,y:-7.799999999999934,z:-0.2499999999999999 },
+  // 		step: 0.01,
+  // 	},
+  // });
+
+  //   // ---- used for debug ----
+  // useFrame(() => {
+  // 	camera.position.x = cameraPosition.x;
+  // 	camera.position.y = cameraPosition.y;
+  // 	camera.position.z = cameraPosition.z;
+  // 	scene.position.x = scenePosition.x;
+  // 	scene.position.y = scenePosition.y;
+  // 	scene.position.z = scenePosition.z;
+  // 	scene.rotation.x = sceneRotation.x;
+  // 	scene.rotation.y = sceneRotation.y;
+  // 	scene.rotation.z = sceneRotation.z;
+  // });
+
+  //Loading animation
+  useEffect(() => {
+    gsap.to(scene.position, {
+      x:0,y:-0.2,z:0,
+      duration:2,
+      delay:1
+    })
+    gsap.to(scene.rotation, {
+      x:1.6,y:0,z:0,
+      duration:2,
+      delay:1, 
+    })
+  })
+
+  //OnScroll Animations 
+  useLayoutEffect(() => {
+    new ScrollTrigger({});
+    // component About.tsx
+    tl.to(nSwitch.current.scale, {
+      x: 0.14,
+      y: 0.14,
+      z: 0.14,
+      scrollTrigger: {
+        trigger: ".second-section",
+        start: "top bottom",
+        end: "top top",
+        scrub: true,
+        immediateRender: false,
+      },
+    })
+    tl.to(nSwitch.current.scale, {
+      x: 0.05,
+      y: 0.05,
+      z: 0.05,
+      scrollTrigger: {
+        trigger: ".third-section",
+        start: "top bottom",
+        end: "top top",
+        scrub: true,
+        immediateRender: false,
+      },
+    })
+
+      // .to(scene.position, {
+      //   x: 3.01,
+      //   y: 0.76,
+      //   z: 3.7,
+      //   scrollTrigger: {
+      //     trigger: ".second-section",
+      //     start: "top bottom",
+      //     end: "top top",
+      //     scrub: true,
+      //     immediateRender: false,
+      //   },
+      // })
+
+      // .to(scene.rotation, {
+      //   x: -0.53,
+      //   y: -3.48,
+      //   z: -0.21,
+      //   scrollTrigger: {
+      //     trigger: ".second-section",
+      //     start: "top bottom",
+      //     end: "top top",
+      //     scrub: true,
+      //     immediateRender: false,
+      //   },
+      // })
+  }, []);
+
   return (
-    <group {...props} dispose={null} ref={nSwitch}>
-      <group rotation={[-Math.PI / 2, 0, 0]} scale={0.015}>
-        <group rotation={[Math.PI / 2, 0, 0]}>
-          <mesh geometry={nodes.Nintendo_Switch_Nintendo_Switch_Material_0.geometry} material={materials.Nintendo_Switch_Material} position={[0, 0, 0]}  scale={1000} />
+    <>
+      <directionalLight
+        castShadow
+        intensity={2}
+        position={[mousePosition.x , mousePosition.y, -1]}
+      />
+      <Environment preset='night' environmentIntensity={0.5}/>
+      <ambientLight intensity={2} />
+      <group {...props} dispose={null} ref={nSwitch} position={[0,-1.4,0]} rotation={[-1.6,0,0]} scale={0.03}>
+        <group rotation={[-Math.PI / 2, 0, 0]} >
+          <group rotation={[Math.PI / 2, 0, 0]}>
+            <mesh geometry={nodes.Nintendo_Switch_Nintendo_Switch_Material_0.geometry} material={materials.Nintendo_Switch_Material} position={[0, 0, 0]}  scale={1000} />
+          </group>
         </group>
       </group>
-    </group>
+    </>
+    
   )
 }
 

@@ -7,18 +7,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'montserrat';
-  }
-
-html,
-body,
-#root
-{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
 }
 
 body {
@@ -28,6 +16,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #cdcbca;
   background-color: #0d0d0d;
+  overflow-x: hidden;
 }
 
 .home > h1{
@@ -38,4 +27,5 @@ body {
     color: transparent;
     font-family: "Jost", sans-serif;
     font-weight: 700;
+    letter-spacing: 5px;
 }
