@@ -1,155 +1,128 @@
-import { useGSAP } from '@gsap/react'
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import gsap from 'gsap';
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react';
+import SwitchNav from './SwitchNav';
+import SliderMain from './SliderMain';
+import './Slider.css'
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+const Carousel = () => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const listRef = useRef(null);
+    // const runningTimeRef = useRef(null);
+    const nextBtnRef = useRef(null);
+    const prevBtnRef = useRef(null);
+    const [isBtnDisabled, setIsBtnDisabled] = useState(false);
 
-function Slider() {
+    const handleBtnClick = () => {
+        setIsBtnDisabled(true);
+        setTimeout(() => {
+            setIsBtnDisabled(false);
+        }, 1000);
+    };
 
-    useGSAP(() => {
-        gsap.from(".list .item .content", {
-            // scrollTrigger: {
-            //     trigger: '.slider-container',
-            //     start: '20% 50%',
-            //     end: '50% 50%',
-            // },
-            y:100,
-            opacity:0,
-            filter: 'blur(20px)',
-            duration: 1,
-        })
-    });
+    const items = [
+        {logo: '/assets/slider_1_logo.jpg', backgroundImg: '/assets/slider_1_bg.jpg', title: 'Detective Pikachu' },
+        {logo: '/assets/slider_2_logo.jpeg', backgroundImg: '/assets/slider_2_bg.jpg', title: 'Super Mario' },
+        {logo: '/assets/slider_3_logo.jpg', backgroundImg: '/assets/slider_3_bg.jpg', title: 'Legends of Zelda' },
+        {logo: '/assets/slider_4_logo.avif', backgroundImg: '/assets/slider_4_bg.png', title: 'Super Smash Bros' },
+        {logo: '/assets/slider_5_logo.jpg', backgroundImg: '/assets/slider_5_bg.jpg', title: 'Pokemon: Legends Arceus' },
+    ];
 
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [thumbnails, setThumbnails] = useState(['thumbnail_1.png', 'thumbnail_2.png', 'thumbnail_3.png']);
-    const thumbnailsRef = useRef([]);
-    const carouselItemsRef = useRef([]);
+    // let runTimeOut;
+    // let runNextAuto;
 
-    useGSAP(() => {
-        gsap.set(carouselItemsRef.current, { autoAlpha: 0 });
-        gsap.set(carouselItemsRef.current[activeIndex], { autoAlpha: 1 });
-      }, [activeIndex]);
-    
-      const handleThumbnailClick = (index) => {
-        if (index === activeIndex) return;
-    
-        const currentItem = carouselItemsRef.current[activeIndex];
-        const newItem = carouselItemsRef.current[index];
-        const newThumbnail = thumbnailsRef.current[index];
-    
-        const tl = gsap.timeline();
-    
-        // Animate the new item on top of the current one
-        tl.set(newItem, { autoAlpha: 1, zIndex: 20, position: 'absolute' });
-    
-        tl.fromTo(newItem, {
-        //   x: newThumbnail.offsetLeft - newItem.offsetLeft,
-          x: newThumbnail.offsetLeft + 200,
-          y: newThumbnail.offsetTop - (newItem.offsetTop - 200),
-        //   y: newThumbnail.offsetTop,
-            // scale: newThumbnail.clientWidth / newItem.clientWidth,
-            scale: 0,
-        }, {
-          duration: 0.7,
-          
-          x: 0,
-          y: 0,
-          scale: 1,
-          ease: "power3.inOut",
-        }, 'a');
-    
-        tl.to(newThumbnail, {
-            duration: 0.4,
-            autoAlpha: 0,
-            onComplete: () => {
-                const updatedThumbnails = [...thumbnails];
-                const [movedThumbnail] = updatedThumbnails.splice(index, 1);
-                updatedThumbnails.push(movedThumbnail);
-                setThumbnails(updatedThumbnails);
-                gsap.set(newThumbnail, { autoAlpha: 1 });
-          }
-        }, 'a');
+    // const timeRunning = 3000;
+    // const timeAutoNext = 7000;
 
-    setActiveIndex(index);
+    useEffect(() => {
+        const nextBtn = nextBtnRef.current;
+        const prevBtn = prevBtnRef.current;
+
+        const handleNextClick = () => showSlider('next');
+        const handlePrevClick = () => showSlider('prev');
+
+        nextBtn.addEventListener('click', handleNextClick);
+        prevBtn.addEventListener('click', handlePrevClick);
+
+        // Start the initial animation
+        // resetTimeAnimation();
+        // runNextAuto = setTimeout(() => {
+        //     nextBtn.click();
+        // }, timeAutoNext);
+
+        return () => {
+            nextBtn.removeEventListener('click', handleNextClick);
+            prevBtn.removeEventListener('click', handlePrevClick);
+            // clearTimeout(runTimeOut);
+            // clearTimeout(runNextAuto);
+        };
+    }, []);
+
+    // const resetTimeAnimation = () => {
+    //     const runningTime = runningTimeRef.current;
+    //     runningTime.style.animation = 'none';
+    //     runningTime.offsetHeight; /* trigger reflow */
+    //     runningTime.style.animation = null;
+    //     runningTime.style.animation = 'runningTime 7s linear 1 forwards';
+    // };
+
+    const showSlider = (type) => {
+        const list = listRef.current;
+        const nextBtn = nextBtnRef.current;
+        const prevBtn = prevBtnRef.current;
+
+        nextBtn.classList.add('disabled');
+        prevBtn.classList.add('disabled');
+
+        if (type === 'next') {
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
+            list.appendChild(list.firstChild);
+            list.classList.add('next');
+        } else {
+            setCurrentIndex((prevIndex) => (prevIndex - 1 + items.length) % items.length);
+            list.prepend(list.lastChild);
+            list.classList.add('prev');
+        }
+
+        // clearTimeout(runTimeOut);
+
+        // runTimeOut = setTimeout(() => {
+        //     list.classList.remove('next');
+        //     list.classList.remove('prev');
+        //     nextBtn.classList.remove('disabled');
+        //     prevBtn.classList.remove('disabled');
+        // }, timeRunning);
+
+        // clearTimeout(runNextAuto);
+        // runNextAuto = setTimeout(() => {
+        //     nextBtn.click();
+        // }, timeAutoNext);
+
+        // resetTimeAnimation();
+    };
+
+    return (
+        <div className="carousel w-full h-screen overflow-hidden relative">
+            <SwitchNav />
+            <div className="list" ref={listRef}>
+                {items.map((item, index) => (
+                    <div key={index} className={`item w-[10rem] h-[10rem] absolute top-[80%] left-[70%] transform -translate-y-[70%] rounded-3xl ${index === currentIndex ? 'active' : ''}`} style={{ backgroundImage: `url(${item.backgroundImg})`, overflow: 'hidden' }}>
+
+                        {/* <div style={{ content: '""', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', zIndex: 1}}></div> */}
+
+                        <div className={`${index === currentIndex ? 'absolute' : 'hidden'}`} style={{ content: '""', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', zIndex: 1}}></div>
+
+                        <SliderMain logo={item.logo} title={item.title} />                        
+                    </div>
+                ))}
+            </div>
+
+            <div className="arrows">
+                <button className="prev w-[3rem] h-[3rem] rounded-full bg-gray-600 border-none outline-none text-xl font-bold" onClick={handleBtnClick} disabled={isBtnDisabled} ref={prevBtnRef}>P</button>
+                <button className="next w-[3rem] h-[3rem] rounded-full bg-gray-600 border-none outline-none text-xl font-bold" onClick={handleBtnClick} disabled={isBtnDisabled} ref={nextBtnRef}>N</button>
+            </div>
+
+            {/* <div className="timeRunning" ref={runningTimeRef}></div> */}
+        </div>
+    );
 };
 
-  return (
-    <div className='slider-container bg-gray-500 w-full h-screen relative'>
-      <div className="carousel w-full h-screen overflow-hidden relative">
-        <div className="list w-full h-full relative">
-          {['slider_1.png', 'slider_2.png', 'slider_1.png'].map((src, index) => (
-            <div
-              key={index}
-              className={`item absolute inset-0 ${index === activeIndex ? 'z-10' : ''}`}
-              ref={el => carouselItemsRef.current[index] = el}
-            >
-              <img className='w-full h-full object-cover' src={`/assets/${src}`} alt="" />
-              <div className="content absolute top-1/2 left-48 -translate-x-1/2 -translate-y-1/2">
-                <div className="title text-6xl">Content {index + 1}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="thumbnail absolute bottom-10 right-10 w-max flex items-center z-20">
-          {/* {['thumbnail_1.png', 'thumbnail_2.png', 'thumbnail_3.png'].map((src, index) => ( */}
-          {thumbnails.map((src, index) => (
-            <div
-              key={index}
-              className="item flex-shrink-0 cursor-pointer"
-              onClick={() => handleThumbnailClick(index)}
-              ref={el => thumbnailsRef.current[index] = el}
-            >
-              <img className='w-full h-full object-cover' src={`/assets/${src}`} alt="" />
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  )
-}
-
-export default Slider
-
-/*
-    <div className='slider-container bg-gray-500 w-full h-screen'>
-        <div className="carousel w-full h-screen overflow-hidden relative">
-            <div className="list">
-                <div className="item absolute inset-x-0 inset-y-0 z-10">
-                    <img className='w-full h-full object-cover' src="/assets/slider_1.png" alt="" />
-                    <div className="content absolute top-1/2 left-48 -translate-x-1/2 -translate-y-1/2">
-                        <div className="title text-6xl">Content 1</div>
-                    </div>
-                </div>
-                <div className="item absolute inset-x-0 inset-y-0">
-                    <img className='w-full h-full object-cover' src="/assets/slider_2.png" alt="" />
-                    <div className="content absolute top-1/2 left-48 -translate-x-1/2 -translate-y-1/2">
-                        <div className="title text-6xl">Content 1</div>
-                    </div>
-                </div>
-                <div className="item absolute inset-x-0 inset-y-0">
-                    <img className='w-full h-full object-cover' src="/assets/slider_1.png" alt="" />
-                    <div className="content absolute top-1/2 left-48 -translate-x-1/2 -translate-y-1/2">
-                        <div className="title text-6xl">Content 1</div>
-                    </div>
-                </div>
-                
-            </div>
-            <div className="thumbnail absolute bottom-10 right-10 w-max flex items-center z-20">
-                <div className="item flex-shrink-0">
-                    <img src="/assets/thumbnail_1.png" alt="" />
-                </div>
-                <div className="item flex-shrink-0">
-                    <img src="/assets/thumbnail_2.png" alt="" />
-                </div>
-                <div className="item flex-shrink-0">
-                    <img src="/assets/thumbnail_3.png" alt="" />
-                </div>
-            </div>
-            <div className="arrows z-20 absolute top-[80%] left-[20%] flex gap-10">
-                <div id="prev" className='bg-gray-500 w-20 h-20 rounded-full flex items-center justify-center bg-opacity-60'>P</div>
-                <div id="next" className='bg-gray-500 w-20 h-20 rounded-full flex items-center justify-center bg-opacity-60'>R</div>
-            </div>
-        </div>
-    </div>
-    */
+export default Carousel;

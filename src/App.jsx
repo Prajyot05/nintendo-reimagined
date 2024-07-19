@@ -1,10 +1,9 @@
 import NavBar from "./components/NavBar"
-import HomePage from "./Pages/HomePage"
+import HomePage from "./pages/HomePage"
 import CanvasContainer from "./components/CanvasContainer"
-import Page2 from "./pages/Page2"
 import { ReactLenis, useLenis } from 'lenis/react'
-import Console from "./Pages/Console"
-import ConsoleNext from "./Pages/ConsoleNext"
+import Console from "./pages/Console"
+import ConsoleNext from "./pages/ConsoleNext"
 
 
 const App = () => {
@@ -20,7 +19,6 @@ const App = () => {
       <HomePage/>
       <Console/>
       <ConsoleNext/>
-      <Page2 />
     </ReactLenis>
   )
 }

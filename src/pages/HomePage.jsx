@@ -1,3 +1,5 @@
+import React, { useEffect, useRef } from 'react';
+
 function HomePage() {
   return (
     <div className='relative home w-full h-screen flex justify-center items-center z-10'>
@@ -6,4 +8,4 @@ function HomePage() {
   )
 }
 
-export default HomePage
+export default HomePage;
