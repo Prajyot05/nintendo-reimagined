@@ -10,6 +10,10 @@ import { useContext } from "react"
 import { LoadingContext } from "./context/LoadingContext"
 import NextSection from "./Pages/NextSection"
 
+// import StarryMouse from "./components/StarryMouse1"
+// import StarryMouse from "./components/StarryMouse2"
+import StarryMouse from "./components/StarryMouse"
+import FooterPage from "./pages/FooterPage"
 
 
 const App = () => {
@@ -21,6 +25,7 @@ const App = () => {
   })
   return (
     <ReactLenis root>
+      <StarryMouse />
       <Loader />
       <div className={`fixed hidden ${isLoading && 'hidden'} w-full h-full z-[999]`}>
         <CanvasContainer/>
@@ -31,6 +36,7 @@ const App = () => {
       <NextSection/>   
       <StorePage/>
       <WorldMap />
+      {/* <FooterPage /> */}
     </ReactLenis>
   )
 }

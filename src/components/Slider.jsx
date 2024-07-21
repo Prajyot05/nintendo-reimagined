@@ -108,7 +108,7 @@ const Carousel = () => {
 
                         {/* <div style={{ content: '""', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', zIndex: 1}}></div> */}
 
-                        <div className={`${index === currentIndex + 1 ? 'absolute' : 'hidden'}`} style={{ content: '""', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', zIndex: 1}}></div>
+                        <div className={`${index === currentIndex ? 'absolute' : 'hidden'}`} style={{ content: '""', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', zIndex: 1}}></div>
 
                         <SliderMain logo={item.logo} title={item.title} />                        
                     </div>
