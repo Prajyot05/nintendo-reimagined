@@ -13,7 +13,7 @@ import NextSection from "./Pages/NextSection"
 // import StarryMouse from "./components/StarryMouse1"
 // import StarryMouse from "./components/StarryMouse2"
 import StarryMouse from "./components/StarryMouse"
-import FooterPage from "./pages/FooterPage"
+import FooterPage from "./Pages/FooterPage"
 
 
 const App = () => {
@@ -36,7 +36,7 @@ const App = () => {
       <NextSection/>   
       <StorePage/>
       <WorldMap />
-      {/* <FooterPage /> */}
+      <FooterPage />
     </ReactLenis>
   )
 }
