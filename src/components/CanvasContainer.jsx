@@ -10,9 +10,6 @@ gsap.registerPlugin(ScrollTrigger);
 const CanvasContainer = () => {
   return (
     <Canvas 
-    // camera={{
-    //     position: [-1.100000000000002,-10.549999999999978,0.050000000000000044,],
-    //   }}
     >
         <Nintendo_switch/>
     </Canvas>

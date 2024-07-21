@@ -2,7 +2,8 @@ import NavBar from "./components/NavBar"
 import HomePage from "./Pages/HomePage"
 import CanvasContainer from "./components/CanvasContainer"
 import Console from "./Pages/Console"
-import ConsoleNext from "./Pages/ConsoleNext"
+import NextSection from "./Pages/NextSection"
+
 
 
 const App = () => {
@@ -15,8 +16,8 @@ const App = () => {
       </div>    
       <NavBar/>
       <HomePage/>
-      <Console/>
-      <ConsoleNext/>
+      <Console/>  
+      <NextSection/>
     </>
   )
 }

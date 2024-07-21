@@ -12,7 +12,8 @@ import { Environment, useGLTF, useScroll } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber';
 import { useEffect, useRef, useState, useLayoutEffect } from 'react'
 import { useControls } from "leva";
-import gsap from 'gsap';
+import {gsap} from 'gsap';
+import {useGSAP} from '@gsap/react'
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 
@@ -29,8 +30,8 @@ export default function Nintendo_switch(props) {
 
   const handleMouseMove = (event) => {
     setMousePosition({
-      x: (event.clientX / window.innerWidth) * 2 - 1,
-      y: (event.clientY / window.innerHeight) * 2 + 1,
+      x: (event.clientX / window.innerWidth) * 4 - 1,
+      y: (event.clientY / window.innerHeight) * 4 + 1,
     });
   };
 
@@ -77,14 +78,14 @@ export default function Nintendo_switch(props) {
   // });
 
   //Loading animation
-  useEffect(() => {
+  useGSAP(() => {
     gsap.to(scene.position, {
-      x:0,y:-0.2,z:0,
+      x:0,y:-1.5,z:0,
       duration:2,
       delay:1
     })
     gsap.to(scene.rotation, {
-      x:1.6,y:0,z:0,
+      x:1.8,y:0,z:0,
       duration:2,
       delay:1, 
     })
@@ -106,7 +107,19 @@ export default function Nintendo_switch(props) {
         immediateRender: false,
       },
     })
-    tl.to(nSwitch.current.scale, {
+      .to(nSwitch.current.position, {
+        x: 0,
+        y: -6,
+        z: 0,
+        scrollTrigger: {
+          trigger: ".second-section",
+          start: "top bottom",
+          end: "top top",
+          scrub: true,
+          immediateRender: false,
+        },
+      })
+    .to(nSwitch.current.scale, {
       x: 0.05,
       y: 0.05,
       z: 0.05,
@@ -118,32 +131,6 @@ export default function Nintendo_switch(props) {
         immediateRender: false,
       },
     })
-
-      // .to(scene.position, {
-      //   x: 3.01,
-      //   y: 0.76,
-      //   z: 3.7,
-      //   scrollTrigger: {
-      //     trigger: ".second-section",
-      //     start: "top bottom",
-      //     end: "top top",
-      //     scrub: true,
-      //     immediateRender: false,
-      //   },
-      // })
-
-      // .to(scene.rotation, {
-      //   x: -0.53,
-      //   y: -3.48,
-      //   z: -0.21,
-      //   scrollTrigger: {
-      //     trigger: ".second-section",
-      //     start: "top bottom",
-      //     end: "top top",
-      //     scrub: true,
-      //     immediateRender: false,
-      //   },
-      // })
   }, []);
 
   return (
@@ -151,11 +138,11 @@ export default function Nintendo_switch(props) {
       <directionalLight
         castShadow
         intensity={2}
-        position={[mousePosition.x , mousePosition.y, -1]}
+        position={[mousePosition.x , mousePosition.y, 1]}
       />
-      <Environment preset='night' environmentIntensity={0.5}/>
+      <Environment preset='night' environmentIntensity={0.1}/>
       <ambientLight intensity={2} />
-      <group {...props} dispose={null} ref={nSwitch} position={[0,-1.4,0]} rotation={[-1.6,0,0]} scale={0.03}>
+      <group {...props} dispose={null} ref={nSwitch} position={[0,-2.5,-0.8]} rotation={[-1.8,0,0]} scale={0.03}>
         <group rotation={[-Math.PI / 2, 0, 0]} >
           <group rotation={[Math.PI / 2, 0, 0]}>
             <mesh geometry={nodes.Nintendo_Switch_Nintendo_Switch_Material_0.geometry} material={materials.Nintendo_Switch_Material} position={[0, 0, 0]}  scale={1000} />
