@@ -27,7 +27,7 @@ const App = () => {
     <ReactLenis root>
       <StarryMouse />
       <Loader />
-      <div className={`fixed hidden ${isLoading && 'hidden'} w-full h-full z-[999]`}>
+      <div className={`fixed w-full h-full z-[99]`}>
         <CanvasContainer/>
       </div>    
       <NavBar/>

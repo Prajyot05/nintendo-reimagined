@@ -43,40 +43,6 @@ export default function Nintendo_switch(props) {
   }, []);
   
 
-  // // ----- used for getting the position for the shoes ----
-  // const { cameraPosition, scenePosition, sceneRotation } = useControls({
-  // 	cameraPosition: {
-  // 		value: {
-  // 			x: -1.100000000000002,
-  //       y: -10.549999999999978,
-  //       z: 0.050000000000000044,
-  // 		},
-  // 		step: 0.05,
-  // 	},
-  // 	scenePosition: {
-  // 		value: { x:0.35,y:-8.199999999999987,z:-0.10000000000000052 },
-  // 		step: 0.05,
-  // 	},
-
-  // 	sceneRotation: {
-  // 		value: { x:-0.26000000000001094,y:-7.799999999999934,z:-0.2499999999999999 },
-  // 		step: 0.01,
-  // 	},
-  // });
-
-  //   // ---- used for debug ----
-  // useFrame(() => {
-  // 	camera.position.x = cameraPosition.x;
-  // 	camera.position.y = cameraPosition.y;
-  // 	camera.position.z = cameraPosition.z;
-  // 	scene.position.x = scenePosition.x;
-  // 	scene.position.y = scenePosition.y;
-  // 	scene.position.z = scenePosition.z;
-  // 	scene.rotation.x = sceneRotation.x;
-  // 	scene.rotation.y = sceneRotation.y;
-  // 	scene.rotation.z = sceneRotation.z;
-  // });
-
   //Loading animation
   useGSAP(() => {
     gsap.to(scene.position, {
@@ -91,14 +57,15 @@ export default function Nintendo_switch(props) {
     })
   })
 
+
   //OnScroll Animations 
   useLayoutEffect(() => {
     new ScrollTrigger({});
     // component About.tsx
     tl.to(nSwitch.current.scale, {
-      x: 0.14,
-      y: 0.14,
-      z: 0.14,
+      x: 0.07,
+      y: 0.07,
+      z: 0.07,
       scrollTrigger: {
         trigger: ".second-section",
         start: "top bottom",
@@ -108,8 +75,8 @@ export default function Nintendo_switch(props) {
       },
     })
       .to(nSwitch.current.position, {
-        x: 0,
-        y: -6,
+        x: -6.8,
+        y: -6.5,
         z: 0,
         scrollTrigger: {
           trigger: ".second-section",
@@ -142,7 +109,7 @@ export default function Nintendo_switch(props) {
       />
       <Environment preset='night' environmentIntensity={0.1}/>
       <ambientLight intensity={2} />
-      <group {...props} dispose={null} ref={nSwitch} position={[0,-2.5,-0.8]} rotation={[-1.8,0,0]} scale={0.03}>
+      <group {...props} dispose={null} ref={nSwitch} position={[0,-2.5,-0.8]} rotation={[-1.8,0,0]} scale={0.035}>
         <group rotation={[-Math.PI / 2, 0, 0]} >
           <group rotation={[Math.PI / 2, 0, 0]}>
             <mesh geometry={nodes.Nintendo_Switch_Nintendo_Switch_Material_0.geometry} material={materials.Nintendo_Switch_Material} position={[0, 0, 0]}  scale={1000} />
