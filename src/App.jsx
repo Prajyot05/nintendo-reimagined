@@ -33,7 +33,7 @@ const App = () => {
       <Console/>
       <StorePage/>
       <WorldMap />
-      {/* <FooterPage /> */}
+      <FooterPage />
     </ReactLenis>
   )
 }
