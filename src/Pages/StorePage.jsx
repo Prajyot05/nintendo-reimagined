@@ -41,7 +41,7 @@ const StorePage = () => {
   })
 
   return (
-    <div className='store-page relative px-20 pt-20'>
+    <div className='store-page relative pt-20'>
       <img className='absolute top-0 left-0' src="/assets/store_blue_switch.svg" alt="" />
       <img className='absolute bottom-0 right-0' src="/assets/store_red_switch.svg" alt="" />
 
@@ -79,14 +79,12 @@ const StorePage = () => {
             <div className="bottom" aria-hidden="true">Gamind Needs</div>
           </div>
         {/* </h3> */}
-        <div className="switch-models flex -mt-36 scale-[0.6] gap-10">
+        <div className="switch-models flex scale-[0.6] gap-10">
           <StoreCard num={1} text={"Nintendo Switch OLED"} />
           <StoreCard num={2} text={"Nintendo Switch"} />
           <StoreCard num={3} text={"Nintendo Switch Lite"} />
         </div>
-        <button className="button-86 w-[10%] mb-64 text-white font-semibold" role="button">Explore Now</button>
-        {/* <RaquazaModel /> */}
-        {/* <img className='absolute scale-75 left-20' loop muted autoPlay src="https://media.tenor.com/PznY9aV9pcEAAAAi/mega-rayquaza-rayquaza.gif" /> */}
+        <button className="button-86 mb-64 text-white font-semibold" role="button">Explore Now</button>
         <img className='absolute bottom-0 left-[30%]' src="/assets/gastly-evolution.gif" alt="" />
       </div>
     </div>
