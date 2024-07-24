@@ -3,7 +3,7 @@ import React, { useContext, useRef, useState } from 'react';
 import gsap from "gsap";
 import { LoadingContext } from "../context/LoadingContext";
 
-const NavBar = ({ toggleMenu }) => {
+const NavBar = ({ toggleMenu, isOpen }) => {
     const [isAnimating, setIsAnimating] = useState(false);
     const { isLoading, setIsLoading } = useContext(LoadingContext);
 
@@ -18,35 +18,7 @@ const NavBar = ({ toggleMenu }) => {
             duration: 0.2
         });
 
-        if (isLoading) {
-            gsap.to(".nav-mid img", {
-                width: '3.5rem',
-                marginTop: '0',
-                duration: 1,
-                ease: 'power4.out',
-            }, '+=0.3');
-
-            gsap.to(".loader-blue", {
-                y: 1000,
-                duration: 1,
-                delay: 1,
-                ease: "power4.out"
-            });
-
-            gsap.to(".loader-red", {
-                y: -1000,
-                duration: 1,
-                delay: 1,
-                ease: "power4.out",
-                onComplete: () => {
-                    setIsLoading(false);
-                    setIsAnimating(false);
-                    gsap.to(".loader", {
-                        display: 'none'
-                    });
-                }
-            });
-        }
+        setIsAnimating(false);
 
         toggleMenu();
     };
@@ -80,8 +52,8 @@ const NavBar = ({ toggleMenu }) => {
     };
 
     return (
-        <nav className='text-white flex w-full overflow-x-hidden p-4 items-center justify-between'>
-            <div className="nav-left flex items-center text-lg gap-20 w-[30%]">
+        <nav className="text-white flex w-full overflow-x-hidden p-4 items-center justify-between">
+            <div className={`nav-left flex items-center text-lg gap-20 w-[30%]`}>
                 <div className="nav-games flex items-center">
                     <img src="/assets/games.png" alt="" />
                     <h4>Games</h4>

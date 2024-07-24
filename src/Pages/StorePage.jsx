@@ -63,9 +63,9 @@ const StorePage = () => {
       </div>
 
       <div className="store-explore relative mt-32 pt-10 m-auto w-[90%] rounded-t-[120px] flex flex-col items-center">
-        <img className='absolute -top-24 left-32 w-[6rem]' src="/assets/store_mario.png" alt="" />
-        <img className='absolute -top-10 right-40 w-[3rem]' src="/assets/store_mushroom.png" alt="" />
-        <img className='absolute -top-10 right-64 w-[3rem]' src="/assets/store_mushroom.png" alt="" />
+        <img className='mario-img absolute' src="/assets/store_mario.png" alt="" />
+        <img className='garoom-1 absolute -top-10 w-[3rem]' src="/assets/store_mushroom.png" alt="" />
+        <img className='garoom-2 absolute -top-10 w-[3rem]' src="/assets/store_mushroom.png" alt="" />
         {/* <h3 className='text-[2.5rem] w-1/2 text-white text-center'> */}
           {/* Find the 
           <span className='text-[#46BADD]'> Perfect System <br /></span>
@@ -85,7 +85,7 @@ const StorePage = () => {
           <StoreCard num={3} text={"Nintendo Switch Lite"} />
         </div>
         <button className="button-86 mb-64 text-white font-semibold" role="button">Explore Now</button>
-        <img className='absolute bottom-0 left-[30%]' src="/assets/gastly-evolution.gif" alt="" />
+        <img className='absolute bottom-20 md:bottom-0 left-0 md:left-[30%]' src="/assets/gastly-evolution.gif" alt="" />
       </div>
     </div>
   )

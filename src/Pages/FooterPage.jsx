@@ -58,7 +58,7 @@ function FooterPage() {
 
     tl2.to('.rounded-div-wrapper', {
       height: 0,
-      marginTop: '-50px',
+      marginTop: 0,
     });
   }, []);
 
@@ -98,11 +98,12 @@ function FooterPage() {
         <div className="rounded-div-wrapper relative w-full h-[100px] overflow-hidden -mt-[100px]">
           <div style={{transform: 'translate(-50%)'}} className="rounded-div absolute left-1/2 w-[150%] h-[750%] bg-black rounded-[50%]"></div>
         </div>
-        <div className="content-2 relative flex items-center w-full bg-black h-[40vh] overflow-hidden">
-          
+        <div className="content-2 relative flex items-center w-full bg-black py-10 md:py-0 h-auto md:h-[40vh] lg:h-[50vh]">
+          <div className="footer-blue-blur pointer-events-none absolute rounded-full w-[30%] h-full blur-[500px] bg-blue-600 -left-[20%]"></div>
+          <ActualFooter />
+          <div className="footer-red-blur pointer-events-none absolute rounded-full w-[30%] blur-[500px] h-full bg-red-600 -right-[20%]"></div>
         </div>
       </div>
-      <ActualFooter />
     </div>
   );
 }

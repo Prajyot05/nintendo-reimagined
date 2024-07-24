@@ -24,6 +24,36 @@
     height: 25%;
 }
 
+.gradient-line{
+  background: linear-gradient(to right, white, black);
+}
+
+.footer-social img{
+  transition: scale ease 0.3s;
+}
+
+.footer-social img:hover{
+  scale: 1.2;
+}
+
+.footer-links h4{
+  transition: all ease 0.3s;
+}
+
+.footer-links h4:hover{
+  color: white;
+}
+
+.actual-footer-mid{
+  padding-left: 5rem;
+  padding-right: 5rem;
+  display: flex;
+}
+
+.actual-footer-mid-mobile{
+  display: none;
+}
+
 @media (max-width: 1200px) {
     .part-0 h1 {
       font-size: 5rem;
@@ -46,10 +76,6 @@
 }
 
 @media (max-width: 1110px) {
-  /* .part-0 h1{
-    font-size: 4rem;
-  } */
-
   .part-0 .left-img{
     left: 0%;
   }
@@ -59,9 +85,13 @@
     right: 0%;
   }
 
-    .img-div{
-        height: 15%;
-    }
+  .img-div{
+      height: 15%;
+  }
+  
+  .footer-social-container{
+    scale: 0.8;
+  }
 }
   
 @media (max-width: 992px) {
@@ -88,6 +118,19 @@
   
     .scroll-p {
       width: 10vw;
+    }
+
+    .footer-links{
+      scale: 0.8;
+    }
+
+    .footer-certificate{
+      scale: 0.8;
+    }
+
+    .actual-footer-mid{
+      padding-left: 2rem;
+      padding-right: 2rem;
     }
 }
 
@@ -137,6 +180,19 @@
     .scroll-p {
       width: 12vw;
     }
+
+    .footer-social-container{
+      scale: 0.6;
+    }
+
+    .footer-links{
+      scale: 0.8;
+      /* margin-right: -10vw; */
+    }
+
+    .footer-certificate{
+      scale: 0.6;
+    }
 }
 
 @media (max-width: 720px) {
@@ -144,6 +200,16 @@
         margin-top: 30%;
         height: 8%;
     }
+
+    .actual-footer-mid{
+      display: none;
+    }
+
+    .actual-footer-mid-mobile{
+      display: flex;
+      flex-direction: column;
+    }
+
 }
 
 @media (max-width: 640px) {
@@ -195,6 +261,10 @@
     .scroll-p {
       width: 16vw;
     }
+
+    .footer-mobile-down .footer-certificate img{
+      scale: 0.8;
+    }
 }
 
 @media (max-width: 360px) {
@@ -213,6 +283,11 @@
   
     .scroll-p {
       width: 18vw;
+    }
+
+    .footer-mobile-down .footer-certificate img{
+      scale: 0.6;
+      margin-top: -2rem;
     }
 }
 
