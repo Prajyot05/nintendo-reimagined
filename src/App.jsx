@@ -12,6 +12,8 @@ import { LoadingContext } from "./context/LoadingContext"
 // import StarryMouse from "./components/StarryMouse2"
 import StarryMouse from "./components/StarryMouse"
 import FooterPage from "./pages/FooterPage"
+import Menubar from "./components/Menubar"
+import NavbarParent from "./components/NavbarParent"
 
 
 const App = () => {
@@ -23,12 +25,12 @@ const App = () => {
   })
   return (
     <ReactLenis root>
-      <StarryMouse />
+      <StarryMouse />  
       <Loader />
-      <div className={`fixed hidden ${isLoading && 'hidden'} w-full h-full z-[999]`}>
+      <NavbarParent/>
+      <div className={`fixed ${isLoading && 'hidden'} w-full h-full z-[99]`}>
         <CanvasContainer/>
       </div>    
-      <NavBar/>
       <HomePage/>
       <Console/>
       <StorePage/>

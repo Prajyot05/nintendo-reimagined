@@ -1,0 +1,120 @@
+nav {
+    user-select: none;
+    transition: transform 0.5s cubic-bezier(.3, 1.4, .5, .9);
+  }
+
+nav.open {
+    transform: translateX(0px) translateY(100px);
+}
+
+.disc {
+    position: absolute;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    line-height: calc(50px * 0.8);
+    padding-top: calc(50px * 0.2);
+    border-radius: 50%;
+    transform: scale3d(0.5, 0.5, 0.5) rotate3d(0, 0, 1, 180deg);
+    pointer-events: none;
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(.3, 1.4, .5, .9), opacity 0.5s;
+}
+
+.disc div {
+    transform: rotate(180deg);
+}
+  
+nav.open .disc {
+    pointer-events: auto;
+    opacity: 1;
+}
+  
+.l1, .l2, .l3, .l4, .l5 {
+    background: #1F1E1E;
+    transition-delay: calc(0.5s / 5);
+    border: 1px solid #2523239e;
+}
+
+.l1 {
+    top: calc(1 * 50px);
+    left: calc(1 * 50px);
+    right: calc(1 * 50px);
+    bottom: calc(1 * 50px);
+    background: #1F1E1E; 
+
+  }
+  
+  .l2 {
+    top: calc(2 * 50px);
+    left: calc(2 * 50px);
+    right: calc(2 * 50px);
+    bottom: calc(2 * 50px);
+    background: #292626; 
+    box-shadow: 0 0 50px -16px #c92a22;
+  }
+  
+  .l3 {
+    top: calc(3 * 50px);
+    left: calc(3 * 50px);
+    right: calc(3 * 50px);
+    bottom: calc(3 * 50px);
+    background: #2e2b2b; 
+    box-shadow: 0 0 50px -15px #c92a22;
+  }
+  
+  .l4 {
+    top: calc(4 * 50px);
+    left: calc(4 * 50px);
+    right: calc(4 * 50px);
+    bottom: calc(4 * 50px);
+    background: #353232; 
+    box-shadow: 0 0 50px -14px #c92a22;
+  }
+  
+
+  nav.open .l1, nav.open .l2, nav.open .l3, nav.open .l4, nav.open .l5 {
+    transition-delay: calc(0.5s / 5);
+    transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 180deg);
+    opacity: 1;
+  }
+  
+  nav.open .l1:hover, nav.open .l2:hover, nav.open .l3:hover, nav.open .l4:hover, nav.open .l5:hover {
+    transition-delay: 0s;
+    color: rgba(255, 255, 255, 1); 
+  }
+  
+  nav.open .l1:active, nav.open .l2:active, nav.open .l3:active, nav.open .l4:active, nav.open .l5:active {
+    color: rgba(255, 255, 255, 1); 
+  }
+  
+  nav.open .toggle {
+    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 0, 0deg);
+  }
+  
+  .toggle {
+    line-height: calc(50px * 2);
+    padding: 0;
+    width: calc(50px * 2);
+    background: gold;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
+  
+  .toggle:hover {
+    background: rgba(204, 171, 0, 1); /* Approximation for shade(gold, 90%) */
+    text-decoration: underline;
+  }
+  
+  .toggle:active {
+    background: rgba(153, 128, 0, 1); /* Approximation for shade(gold, 50%) */
+    color: rgba(255, 215, 0, 0.5); /* Approximation for rgba($color-inner, .5) */
+    transform: scale(0.9);
+    transition-duration: 0s;
+  }
+  
+  nav.open .toggle {
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
