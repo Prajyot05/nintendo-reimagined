@@ -157,13 +157,13 @@ const Carousel = () => {
                 ))}
             </div>
 
-            <div className="arrows absolute bottom-5 left-5 md:bottom-20 md:left-40">
-                <button className="prev scale-50 md:scale-75 lg:scale-100 w-[6rem] h-[6rem] flex items-center justify-center rounded-full bg-gray-800 hover:bg-gray-600 border-none outline-none text-xl font-bold" onClick={handleBtnClick} disabled={isBtnDisabled} ref={prevBtnRef}>
+            <div className="arrows absolute bottom-5 left-5 lg:bottom-20 lg:left-28">
+                <button className="prev-btn w-[6rem] h-[6rem] flex items-center justify-center rounded-full bg-gray-800 hover:bg-gray-600 border-none outline-none text-xl font-bold" onClick={handleBtnClick} disabled={isBtnDisabled} ref={prevBtnRef}>
                     <div className="prev-in p-5 rounded-full border-2 border-gray-400">
                         <img className='rotate-180 w-[2rem]' src="/assets/arrow.svg" alt="" />
                     </div>
                 </button>
-                <button className="next scale-50 md:scale-75 lg:scale-100 ml-10 w-[6rem] h-[6rem] flex items-center justify-center rounded-full bg-gray-800 hover:bg-gray-600 border-none outline-none text-xl font-bold" onClick={handleBtnClick} disabled={isBtnDisabled} ref={nextBtnRef}>
+                <button className="next-btn ml-10 w-[6rem] h-[6rem] flex items-center justify-center rounded-full bg-gray-800 hover:bg-gray-600 border-none outline-none text-xl font-bold" onClick={handleBtnClick} disabled={isBtnDisabled} ref={nextBtnRef}>
                     <div className="next-in p-5 rounded-full  border-2 border-gray-400">
                         <img className='w-[2rem]' src="/assets/arrow.svg" alt="" />
                     </div>

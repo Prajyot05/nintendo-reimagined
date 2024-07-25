@@ -10,6 +10,8 @@ const NavBar = ({ toggleMenu, isOpen }) => {
     const switchImg1 = useRef(null);
     const switchImg2 = useRef(null);
 
+    const isMobile = window.innerWidth <= 768;
+
     const handleClick = () => {
         setIsAnimating(true);
 
@@ -63,6 +65,7 @@ const NavBar = ({ toggleMenu, isOpen }) => {
 
     const handleMouseEnter = () => {
         if (isAnimating) return;
+        if(isMobile) return;
 
         gsap.to(switchImg1.current, {
             y: switchImg1.current.offsetWidth / 5,
@@ -77,6 +80,7 @@ const NavBar = ({ toggleMenu, isOpen }) => {
 
     const handleMouseLeave = () => {
         if (isAnimating) return;
+        if(isMobile) return;
 
         gsap.to(switchImg1.current, {
             y: 0,

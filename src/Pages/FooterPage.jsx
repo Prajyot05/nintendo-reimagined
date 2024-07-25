@@ -58,12 +58,12 @@ function FooterPage() {
 
     tl2.to('.rounded-div-wrapper', {
       height: 0,
-      marginTop: 0,
+      marginTop: '20px',
     });
   }, []);
 
   return (
-    <div className='footer-page relative lg:pt-40'>
+    <div className='footer-page relative w-screen overflow-x-hidden lg:pt-40'>
       <div className="part-0 w-full pb-10">
         <img className='left-img hidden lg:block absolute top-[4%] left-20 scale-[0.6]' src="/assets/pokemon-blue.gif" alt="" />
         <h1 className='text-[6rem] text-white font-bold text-center p-10'>News & Events</h1>

@@ -2,10 +2,10 @@ import React from 'react'
 
 function SliderMain({logo, title, description, rating, downloads}) {
   return (
-    <div className="content absolute z-10 lg:top-[10vh] w-full min-h-screen hidden">
-          <div className="slider-info-container flex gap-10 items-start justify-between p-10 font-bold opacity-0">
+    <div className="content absolute z-10 w-full min-h-screen hidden">
+          <div className="slider-info-container flex items-start justify-between font-bold opacity-0">
             <div className="slider-main-left w-[40%]">
-              <div className="slider-main-left-img w-fit rounded-3xl overflow-hidden"><img className='w-[30rem] h-[30rem] object-cover object-top' src={logo} alt="" /></div>            
+              <div className="slider-main-left-img w-fit rounded-3xl overflow-hidden"><img className='object-cover object-top' src={logo} alt="" /></div>
             </div>
             <div className="slider-main-right flex flex-col items-start w-[60%] text-white">
               <h1 className='text-5xl text-center uppercase'>{title}</h1>

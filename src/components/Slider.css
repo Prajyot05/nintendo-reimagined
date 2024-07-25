@@ -122,12 +122,17 @@
     cursor: pointer;
 }
 
-.prev{
+.prev-btn{
     box-shadow: -4px 0 4px rgba(5, 126, 255, 0.5), 0 0 5px rgba(5, 126, 255, 0.4);
 }
 
-.next{
+.next-btn{
     box-shadow: 4px 0 4px rgba(237, 0, 0, 0.5), 0 0 5px rgba(237, 0, 0, 0.4);
+}
+
+.slider-info-container{
+    gap: 2.5rem;
+    padding: 2.5rem;
 }
 
 .slider-main-right{
@@ -142,6 +147,15 @@
     font-size: 1.8rem;
 }
 
+.slider-main-left img{
+    width: 30rem;
+    height: 30rem;
+}
+
+.content{
+    top: 10vh;
+}
+
 /* .arrows button:hover{
     background: rgb(60, 60, 60);
     color: #000;
@@ -154,14 +168,19 @@
         gap: 1.5vw;
     }
 
-    .slider-main-right h1{
-
+    .slider-info-container{
+        scale: 0.9;
+        margin-top: -5vh;
     }
 }
 
 @media (max-width: 1050px) {
     .content{
         padding-top: 5vh;
+    }
+
+    .slider-main-right{
+        gap: 3vw;
     }
 
     .slider-main-right h1{
@@ -174,6 +193,20 @@
 
     .direct-download-btn h3{
         font-size: 1.4rem;
+    }
+
+    .prev-btn, .next-btn{
+        scale: 0.8;
+    }
+
+    .slider-main-left img{
+        width: 25rem;
+        height: 25rem;
+    }
+
+    .slider-info-container{
+        scale: 0.8;
+        margin-top: -15vh;
     }
 }
 
