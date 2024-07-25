@@ -210,6 +210,12 @@
     }
 }
 
+@media (max-width: 764px) {
+    .carousel{
+        display: none;
+    }
+}
+
 @media screen and (max-width: 999px){
     
     header{
