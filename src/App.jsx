@@ -44,7 +44,7 @@ const App = () => {
       {
         !isLoading && isDelayOver && 
         <>
-        <div className={`fixed ${isLoading && 'hidden'} hidden w-full h-full z-[99]`}>
+        <div className={`fixed ${isLoading && 'hidden'} w-full h-full z-[99]`}>
         <CanvasContainer/>
       </div> 
           <HomePage/>

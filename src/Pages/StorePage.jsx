@@ -55,7 +55,7 @@ const StorePage = () => {
   })
 
   return (
-    <div className='store-page relative pt-20'>
+    <div className='store-page relative pt-20 z-[101]'>
       <img className='absolute top-0 left-0' src="/assets/store_blue_switch.svg" alt="" />
       <img className='absolute bottom-0 right-0' src="/assets/store_red_switch.svg" alt="" />
 

@@ -81,18 +81,18 @@ export default function Nintendo_switch(props) {
       scrollTrigger: {
         trigger: ".second-section",
         start: "top bottom",
-        end: "top top",
+        end: "top -20%",
         scrub: true,
         immediateRender: false,
       },
     })
     .to(nSwitch.current.scale, {
-      x: 0.005,
-      y: 0.005,
-      z: 0.005,
+      x: 0.0005,
+      y: 0.0005,
+      z: 0.0005,
       scrollTrigger: {
         trigger: ".store-page",
-        start: "top bottom",
+        start: "top 180%",
         end: "top top",
         scrub: true,
         immediateRender: false,
@@ -105,18 +105,6 @@ export default function Nintendo_switch(props) {
       scrollTrigger: {
         trigger: ".store-page",
         start: "top bottom",
-        end: "top top",
-        scrub: true,
-        immediateRender: false,
-      },
-    })
-    .to(nSwitch.current.rotation, {
-      x: -1.8,
-      y: 3.15,
-      z: 0,
-      scrollTrigger: {
-        trigger: ".store-page",
-        start: "top 150%",
         end: "top top",
         scrub: true,
         immediateRender: false,

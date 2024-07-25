@@ -140,7 +140,7 @@ const Carousel = () => {
     };
 
     return (
-        <div className="carousel w-full h-[110vh] overflow-x-hidden relative">
+        <div className="carousel w-full h-[110vh] overflow-x-hidden relative z-[101]">
             <SwitchNav />
             <div className="list" ref={listRef}>
                 {items.map((item, index) => (
