@@ -8,16 +8,30 @@ import "./StorePage.css"
 const StorePage = () => {
 
   useGSAP(() => {
-    gsap.from(".store-videos", {
-      y: 100,
-      opacity: 0,
-      duration: 1,
-      scrollTrigger: {
-        trigger: ".store-page",
-        start: "0% 50%",
-        end: "10% 50%"
-      }
-    })
+    const isMobile = window.innerWidth <= 768;
+    
+    if(!isMobile){
+      gsap.from(".store-videos", {
+        y: 100,
+        opacity: 0,
+        duration: 1,
+        scrollTrigger: {
+          trigger: ".store-page",
+          start: "0% 50%",
+          end: "10% 50%"
+        }
+      })
+    }
+    else{
+      gsap.from(".store-videos", {
+        y: 100,
+        opacity: 0,
+        duration: 1,
+        scrollTrigger: {
+          trigger: ".home",
+          start: "0% 50%",
+          end: "10% 50%",
+        }})}
 
     gsap.to(".right-vid", {
       paddingRight: 0,

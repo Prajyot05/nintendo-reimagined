@@ -3,7 +3,7 @@ import "./Menubar.css";
 
 const Menubar = ({ open }) => {
     return (
-      <nav className={`top-right absolute -top-[38rem] w-[850px] h-[850px] flex flex-col items-center justify-center z-[111] ${open ? 'open' : ''}`}>
+      <nav className={`top-right absolute -top-[38rem] w-screen sm:w-[850px] h-[850px] flex flex-col items-center justify-center z-[111] ${open ? 'open' : ''}`}>
         <a className="disc l1">
           <div>About us</div>
         </a>
