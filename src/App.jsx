@@ -40,12 +40,13 @@ const App = () => {
       <StarryMouse />  
       <Loader />
       <NavbarParent/>
-      <div className={`fixed hidden ${isLoading && 'hidden'} w-full h-full z-[99]`}>
-        <CanvasContainer/>
-      </div> 
+      
       {
         !isLoading && isDelayOver && 
         <>
+        <div className={`fixed ${isLoading && 'hidden'} hidden w-full h-full z-[99]`}>
+        <CanvasContainer/>
+      </div> 
           <HomePage/>
           <Console/>
           <StorePage/>

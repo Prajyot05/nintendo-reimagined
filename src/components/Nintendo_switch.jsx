@@ -46,7 +46,7 @@ export default function Nintendo_switch(props) {
   //Loading animation
   useGSAP(() => {
     gsap.to(scene.position, {
-      x:0,y:-1.5,z:0,
+      x:0,y:-1.3,z:0,
       duration:2,
       delay:1
     })
@@ -62,10 +62,10 @@ export default function Nintendo_switch(props) {
   useLayoutEffect(() => {
     new ScrollTrigger({});
     // component About.tsx
-    tl.to(nSwitch.current.scale, {
-      x: 0.07,
-      y: 0.07,
-      z: 0.07,
+    tl.to(nSwitch.current.position, {
+      x: 0,
+      y: -1.5,
+      z: 0,   
       scrollTrigger: {
         trigger: ".second-section",
         start: "top bottom",
@@ -74,25 +74,49 @@ export default function Nintendo_switch(props) {
         immediateRender: false,
       },
     })
-      .to(nSwitch.current.position, {
-        x: -6.8,
-        y: -6.5,
-        z: 0,
-        scrollTrigger: {
-          trigger: ".second-section",
-          start: "top bottom",
-          end: "top top",
-          scrub: true,
-          immediateRender: false,
-        },
-      })
-    .to(nSwitch.current.scale, {
-      x: 0.05,
-      y: 0.05,
-      z: 0.05,
+    tl.to(nSwitch.current.scale, {
+      x: 0.15,
+      y: 0.15,
+      z: 0.15,
       scrollTrigger: {
-        trigger: ".third-section",
+        trigger: ".second-section",
         start: "top bottom",
+        end: "top top",
+        scrub: true,
+        immediateRender: false,
+      },
+    })
+    .to(nSwitch.current.scale, {
+      x: 0.005,
+      y: 0.005,
+      z: 0.005,
+      scrollTrigger: {
+        trigger: ".store-page",
+        start: "top bottom",
+        end: "top top",
+        scrub: true,
+        immediateRender: false,
+      },
+    })
+    .to(nSwitch.current.position, {
+      x: 0,
+      y: 3.5,
+      z: 0,
+      scrollTrigger: {
+        trigger: ".store-page",
+        start: "top bottom",
+        end: "top top",
+        scrub: true,
+        immediateRender: false,
+      },
+    })
+    .to(nSwitch.current.rotation, {
+      x: -1.8,
+      y: 3.15,
+      z: 0,
+      scrollTrigger: {
+        trigger: ".store-page",
+        start: "top 150%",
         end: "top top",
         scrub: true,
         immediateRender: false,
@@ -112,7 +136,7 @@ export default function Nintendo_switch(props) {
       <group {...props} dispose={null} ref={nSwitch} position={[0,-2.5,-0.8]} rotation={[-1.8,0,0]} scale={0.035}>
         <group rotation={[-Math.PI / 2, 0, 0]} >
           <group rotation={[Math.PI / 2, 0, 0]}>
-            <mesh geometry={nodes.Nintendo_Switch_Nintendo_Switch_Material_0.geometry} material={materials.Nintendo_Switch_Material} position={[0, 0, 0]}  scale={700} />
+            <mesh geometry={nodes.Nintendo_Switch_Nintendo_Switch_Material_0.geometry} material={materials.Nintendo_Switch_Material} position={[0, 0, 0]}  scale={1000} />
           </group>
         </group>
       </group>

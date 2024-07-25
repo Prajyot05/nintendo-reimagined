@@ -255,3 +255,10 @@
         font-size: 14px;
     }
 }
+
+@media screen and (max-height: 650px){ 
+    .slider-info-container{ 
+        scale: 0.8; 
+        margin-top: -10vh; 
+    } 
+}
