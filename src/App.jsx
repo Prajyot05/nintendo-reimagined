@@ -1,4 +1,3 @@
-import NavBar from "./components/NavBar"
 import HomePage from "./pages/HomePage"
 import CanvasContainer from "./components/CanvasContainer"
 import { ReactLenis, useLenis } from 'lenis/react'
@@ -10,7 +9,6 @@ import { useContext, useEffect, useState } from "react"
 import { LoadingContext } from "./context/LoadingContext"
 import StarryMouse from "./components/StarryMouse"
 import FooterPage from "./pages/FooterPage"
-import Menubar from "./components/Menubar"
 import NavbarParent from "./components/NavbarParent"
 
 
