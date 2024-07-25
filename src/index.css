@@ -10,7 +10,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    cursor: url('/assets/cursor_new.webp') 5 22, auto !important;
+    cursor: url('/assets/cursor.webp'), auto !important;
 }
 
 ::-webkit-scrollbar {

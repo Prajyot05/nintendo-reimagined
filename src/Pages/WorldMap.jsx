@@ -23,9 +23,9 @@ function WorldMap() {
         <p className='text-sm md:text-lg px-0 md:px-10 lg:px-64 pt-5'>Our global teams at Nintendo are home to individuals from diverse backgrounds and cultures. We believe in transparency, open communication, and spending time with one another. While all teams have their own unique traits, it’s the underlying culture, shared values, and love for games that keep us together.</p>
       </div>
       <div className='world-map relative flex justify-center w-full min-h-screen overflow-hidden'>
-          <img ref={img1Ref} className='object-cover hidden md:block absolute' src="/assets/world_map_1.svg" alt="" />
-          <img ref={img2Ref} className='object-cover hidden md:block absolute' src="/assets/world_map_2.svg" alt="" />
-          <img ref={img2Ref} className='object-cover md:hidden absolute pt-10' src="/assets/world-map-mobile.svg" alt="" />
+          <img ref={img1Ref} className='object-cover hidden sm:block absolute' src="/assets/world_map_1.svg" alt="" />
+          <img ref={img2Ref} className='object-cover hidden sm:block absolute' src="/assets/world_map_2.svg" alt="" />
+          <img ref={img2Ref} className='object-cover sm:hidden absolute pt-10' src="/assets/world-map-mobile.svg" alt="" />
       </div>
     </div>
   )
