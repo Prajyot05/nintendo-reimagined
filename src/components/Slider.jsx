@@ -19,12 +19,52 @@ const Carousel = () => {
     };
 
     const items = [
-        {logo: '/assets/slider_1_logo.jpg', backgroundImg: '/assets/slider_1_bg.jpg', title: 'Detective Pikachu' },
-        {logo: '/assets/slider_2_logo.jpeg', backgroundImg: '/assets/slider_2_bg.jpg', title: 'Super Mario' },
-        {logo: '/assets/slider_3_logo.jpg', backgroundImg: '/assets/slider_3_bg.jpg', title: 'Legends of Zelda' },
-        {logo: '/assets/slider_4_logo.avif', backgroundImg: '/assets/slider_4_bg.png', title: 'Super Smash Bros' },
-        {logo: '/assets/slider_5_logo.jpg', backgroundImg: '/assets/slider_5_bg.jpg', title: 'Pokemon: Legends Arceus' },
-    ];
+        {
+            logo: '/assets/slider_1_logo.jpg',
+            card_logo: '/assets/slider_1_card_logo.png',
+            backgroundImg: '/assets/slider_1_bg.jpg',
+            title: 'Detective Pikachu™ Returns',
+            description: 'Dive back into Ryme City! Strange events are happening, and only our favorite detective can solve the case. Are you ready for a journey packed with suspense and surprises? Join Pikachu and Tim Goodman as they unravel a new mystery filled with unexpected twists and turns.',
+            rating: 4.5,
+            downloads: '1 Million +',
+        },
+        {
+            logo: '/assets/slider_2_logo.jpeg',
+            card_logo: '/assets/slider_2_card_logo.png',
+            backgroundImg: '/assets/slider_2_bg.jpg',
+            title: 'Super Mario Odyssey',
+            description: 'Join Mario on a massive, globe-trotting 3D adventure! Use his incredible new abilities to collect Moons so you can power up your airship, the Odyssey, and rescue Princess Peach from Bowser\'s wedding plans!',
+            rating: 4.8,
+            downloads: '10 Million +',
+        },
+        {
+            logo: '/assets/slider_3_logo.jpg',
+            card_logo: '/assets/slider_3_card_logo.webp',
+            backgroundImg: '/assets/slider_3_bg.jpg',
+            title: 'The Legend of Zelda',
+            description: 'Step into a vast and beautiful world! Strange events are unfolding, and only Link can uncover the secrets. Are you ready for an adventure filled with mystery and wonder? Join Link as he explores breathtaking landscapes and faces formidable challenges in a quest to save Hyrule.',
+            rating: 4.9,
+            downloads: '15 Million +',
+        },
+        {
+            logo: '/assets/slider_4_logo.avif',
+            card_logo: '/assets/slider_4_card_logo.png',
+            backgroundImg: '/assets/slider_4_bg.png',
+            title: 'Super Smash Bros',
+            description: 'The Super Smash Bros. series is a crossover series of multiplayer fighting games in which many well-known Nintendo characters are pitted against each other to fight, with each character using their unique abilities in battle. Gather your friends for the ultimate showdown Its time to smash together!',
+            rating: 4.8,
+            downloads: '10 Million +',
+        },
+        {
+            logo: '/assets/slider_5_logo.jpg',
+            card_logo: '/assets/slider_5_card_logo.png',
+            backgroundImg: '/assets/slider_5_bg.jpg',
+            title: 'Pokemon: Legends Arceus',
+            description: 'Get ready for a new kind of grand, Pokémon adventure in Pokémon™ Legends: Arceus, a new game from Game Freak that blends action and exploration with the RPG roots of the Pokémon series.',
+            rating: 4.6,
+            downloads: '8 Million +',
+        },
+      ];
 
     // let runTimeOut;
     // let runNextAuto;
@@ -104,13 +144,15 @@ const Carousel = () => {
             <SwitchNav />
             <div className="list" ref={listRef}>
                 {items.map((item, index) => (
-                    <div key={index} className={`item w-[10rem] h-[10rem] absolute top-[80%] left-[70%] transform -translate-y-[70%] rounded-3xl ${index === currentIndex ? 'active' : ''}`} style={{ backgroundImage: `url(${item.backgroundImg})`, overflow: 'hidden' }}>
+                    <div key={index} className={`item w-[10rem] h-[10rem] absolute top-[85%] left-[70%] transform -translate-y-[70%] rounded-3xl ${index === currentIndex ? 'active' : ''}`} style={{ backgroundImage: `url(${item.backgroundImg})`, overflow: 'hidden' }}>
 
                         {/* <div style={{ content: '""', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', zIndex: 1}}></div> */}
 
                         <div className={`${index === currentIndex ? 'absolute' : 'hidden'}`} style={{ content: '""', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', zIndex: 1}}></div>
 
-                        <SliderMain logo={item.logo} title={item.title} />                        
+                        <img className={`${index !== currentIndex ? 'absolute' : 'hidden'} absolute w-full ${index === 0 ? 'top-10' : index === 4 || index === 2 ? 'top-5' : 'top-0'} ${index === 3 && 'scale-50 top-0'} left-0`} src={item.card_logo} alt="" />
+
+                        <SliderMain logo={item.logo} title={item.title} description={item.description} rating={item.rating} downloads={item.downloads} />                        
                     </div>
                 ))}
             </div>

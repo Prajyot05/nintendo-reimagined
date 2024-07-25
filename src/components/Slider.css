@@ -78,9 +78,12 @@
     display: block;
 }
 
-.content .name{
-    text-shadow: 3px 4px 4px rgba(255, 255, 255, 0.8);
+.content .slider-info-container{
     animation: animate 1s ease-in-out 0.6s 1 forwards;
+}
+
+.content .slider-info-container h1{
+    text-shadow: 3px 4px 4px rgba(255, 255, 255, 0.8);
 }
 
 @keyframes animate {
