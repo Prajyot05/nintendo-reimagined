@@ -140,11 +140,11 @@ const Carousel = () => {
     };
 
     return (
-        <div className="carousel w-full h-screen overflow-x-hidden relative">
+        <div className="carousel w-full h-[110vh] overflow-x-hidden relative">
             <SwitchNav />
             <div className="list" ref={listRef}>
                 {items.map((item, index) => (
-                    <div key={index} className={`item w-[10rem] h-[10rem] absolute top-[85%] left-[70%] transform -translate-y-[70%] rounded-3xl ${index === currentIndex ? 'active' : ''}`} style={{ backgroundImage: `url(${item.backgroundImg})`, overflow: 'hidden' }}>
+                    <div key={index} className={`item w-[8rem] h-[8rem] lg:w-[10rem] lg:h-[10rem] absolute top-[85%] left-[70%] transform -translate-y-[70%] rounded-3xl ${index === currentIndex ? 'active' : ''}`} style={{ backgroundImage: `url(${item.backgroundImg})`, overflow: 'hidden' }}>
 
                         {/* <div style={{ content: '""', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', zIndex: 1}}></div> */}
 
@@ -157,9 +157,17 @@ const Carousel = () => {
                 ))}
             </div>
 
-            <div className="arrows">
-                <button className="prev w-[3rem] h-[3rem] rounded-full bg-gray-600 border-none outline-none text-xl font-bold" onClick={handleBtnClick} disabled={isBtnDisabled} ref={prevBtnRef}>P</button>
-                <button className="next w-[3rem] h-[3rem] rounded-full bg-gray-600 border-none outline-none text-xl font-bold" onClick={handleBtnClick} disabled={isBtnDisabled} ref={nextBtnRef}>N</button>
+            <div className="arrows absolute bottom-5 left-5 md:bottom-20 md:left-40">
+                <button className="prev scale-50 md:scale-75 lg:scale-100 w-[6rem] h-[6rem] flex items-center justify-center rounded-full bg-gray-800 hover:bg-gray-600 border-none outline-none text-xl font-bold" onClick={handleBtnClick} disabled={isBtnDisabled} ref={prevBtnRef}>
+                    <div className="prev-in p-5 rounded-full border-2 border-gray-400">
+                        <img className='rotate-180 w-[2rem]' src="/assets/arrow.svg" alt="" />
+                    </div>
+                </button>
+                <button className="next scale-50 md:scale-75 lg:scale-100 ml-10 w-[6rem] h-[6rem] flex items-center justify-center rounded-full bg-gray-800 hover:bg-gray-600 border-none outline-none text-xl font-bold" onClick={handleBtnClick} disabled={isBtnDisabled} ref={nextBtnRef}>
+                    <div className="next-in p-5 rounded-full  border-2 border-gray-400">
+                        <img className='w-[2rem]' src="/assets/arrow.svg" alt="" />
+                    </div>
+                </button>
             </div>
 
             {/* <div className="timeRunning" ref={runningTimeRef}></div> */}

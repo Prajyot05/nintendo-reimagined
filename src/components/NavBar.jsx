@@ -18,9 +18,47 @@ const NavBar = ({ toggleMenu, isOpen }) => {
             duration: 0.2
         });
 
+        if (isLoading) {
+            gsap.to(".nav-mid img", {
+                width: '3.5rem',
+                marginTop: '0',
+                duration: 1,
+                ease: 'power4.out',
+            }, 'load');
+
+            gsap.to(".loader-blue", {
+                y: 1000,
+                duration: 1,
+                delay: 1,
+                ease: "power4.out"
+            }, 'load');
+
+            gsap.to(".loader-red", {
+                y: -1000,
+                duration: 1,
+                delay: 1,
+                ease: "power4.out",
+                onComplete: () => {
+                    setIsLoading(false);
+                    gsap.to(".loader", {
+                        display: 'none'
+                    });
+                }
+            }, 'load');
+
+            gsap.to(".click-here", {
+              opacity: 0,
+              // display: 'none',
+              duration: 0.5,
+              ease: 'power4.out',
+            }, 'load')
+
+            setIsLoading(false)
+        }
+
         setIsAnimating(false);
 
-        toggleMenu();
+        if(!isLoading) toggleMenu();
     };
 
     const handleMouseEnter = () => {

@@ -122,12 +122,60 @@
     cursor: pointer;
 }
 
-.arrows button:hover{
-    background: #fff;
-    color: #000;
+.prev{
+    box-shadow: -4px 0 4px rgba(5, 126, 255, 0.5), 0 0 5px rgba(5, 126, 255, 0.4);
 }
 
+.next{
+    box-shadow: 4px 0 4px rgba(237, 0, 0, 0.5), 0 0 5px rgba(237, 0, 0, 0.4);
+}
+
+.slider-main-right{
+    gap: 2.5rem;
+}
+
+.slider-main-right p{
+    font-size: 1.1rem;
+}
+
+.direct-download-btn h3{
+    font-size: 1.8rem;
+}
+
+/* .arrows button:hover{
+    background: rgb(60, 60, 60);
+    color: #000;
+} */
+
 /* Responsive Design */
+
+@media (max-width: 1200px) {
+    .slider-main-right{
+        gap: 1.5vw;
+    }
+
+    .slider-main-right h1{
+
+    }
+}
+
+@media (max-width: 1050px) {
+    .content{
+        padding-top: 5vh;
+    }
+
+    .slider-main-right h1{
+        scale: 0.8;
+    }
+
+    .slider-main-right p{
+        font-size: 1rem;
+    }
+
+    .direct-download-btn h3{
+        font-size: 1.4rem;
+    }
+}
 
 @media screen and (max-width: 999px){
     
