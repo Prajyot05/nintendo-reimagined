@@ -26,7 +26,7 @@ const Console = () => {
   }, []);
 
   return (
-    <section className='second-section h-[250vh] w-full text-white z-[101]'>
+    <section className='second-section hidden lg:block h-[250vh] w-full text-white z-[101]'>
       <div ref={consoleRef} className=' sticky top-0 left-0 z-[101]'>
         <Slider />
       </div>

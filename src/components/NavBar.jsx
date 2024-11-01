@@ -95,7 +95,8 @@ const NavBar = ({ toggleMenu, isOpen }) => {
 
     return (
         <nav className="text-white flex w-screen p-4 items-center justify-between">
-            <div className={`nav-left items-center text-lg gap-20 w-[30%] hidden sm:flex`}>
+            <div className={`nav-left items-center text-lg gap-20 w-[30%] hidden`}>
+            {/* <div className={`nav-left items-center text-lg gap-20 w-[30%] hidden sm:flex`}> */}
                 <div className="nav-games flex items-center">
                     <img src="/assets/games.png" alt="" />
                     <h4>Games</h4>
@@ -110,11 +111,12 @@ const NavBar = ({ toggleMenu, isOpen }) => {
                     <img src="/assets/search_right.png" alt="" />
                 </div>
             </div>
-            <div className="nav-mid flex scale-50 absolute z-[1001] left-[50vw] top-[4vw] -translate-x-1/2 -translate-y-1/2">
+            <div className="nav-mid flex scale-50 absolute z-[1001] left-[50vw] top-[4rem] -translate-x-1/2 -translate-y-1/2">
                 <img ref={switchImg1} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleClick} className="w-[15rem] mt-[150vh]" src="/assets/nintendo_switch_1.svg" alt="" />
                 <img ref={switchImg2} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleClick} className="w-[15rem] mt-[150vh]" src="/assets/nintendo_switch_2.svg" alt="" />
             </div>
-            <div className="nav-right hidden sm:flex items-center w-[30%] justify-center gap-10">
+            {/* <div className="nav-right hidden sm:flex items-center w-[30%] justify-center gap-10"> */}
+            <div className="nav-right hidden items-center w-[30%] justify-center gap-10">
                 <div className="shop">
                     <img src="/assets/shopping_bag.png" alt="" />
                 </div>

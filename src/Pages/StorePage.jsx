@@ -60,7 +60,7 @@ const StorePage = () => {
       <img className='absolute bottom-0 right-0' src="/assets/store_red_switch.svg" alt="" />
 
       <div className="store-videos flex w-full justify-center items-center">
-        <div className="left-vid overflow-hidden rounded-[30px] opacity-[0.7] h-full -mr-10 pl-64 w-[20vw]">
+        <div className="left-vid overflow-hidden rounded-[30px] opacity-[0.7] h-full -mr-10 md:pl-64 w-[20vw]">
           <img className='obj-cover' src="/assets/store_left_img.jpg" alt="" />
         </div>
         <div className="main-vid w-[60vw] h-full rounded-[50px] z-10">
