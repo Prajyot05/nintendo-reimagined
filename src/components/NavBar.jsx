@@ -111,7 +111,7 @@ const NavBar = ({ toggleMenu, isOpen }) => {
                     <img src="/assets/search_right.png" alt="" />
                 </div>
             </div>
-            <div className="nav-mid flex scale-50 absolute z-[1001] left-[50vw] top-[4rem] -translate-x-1/2 -translate-y-1/2">
+            <div className="nav-mid flex scale-50 absolute z-[1001] left-[40vw] md:left-[50vw] top-[4rem] -translate-x-1/2 -translate-y-1/2">
                 <img ref={switchImg1} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleClick} className="w-[15rem] mt-[150vh]" src="/assets/nintendo_switch_1.svg" alt="" />
                 <img ref={switchImg2} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleClick} className="w-[15rem] mt-[150vh]" src="/assets/nintendo_switch_2.svg" alt="" />
             </div>
