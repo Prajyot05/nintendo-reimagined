@@ -31,7 +31,8 @@ const StorePage = () => {
           trigger: ".home",
           start: "0% 50%",
           end: "10% 50%",
-        }})}
+      }})
+    }
 
     gsap.to(".right-vid", {
       paddingRight: 0,
