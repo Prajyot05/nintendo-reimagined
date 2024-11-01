@@ -50,6 +50,7 @@ const App = () => {
             </div>
           </div>
           <HomePage/>
+          
           <Console/>
           <StorePage/>
           <WorldMap />
