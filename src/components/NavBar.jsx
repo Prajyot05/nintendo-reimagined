@@ -10,7 +10,7 @@ const NavBar = ({ toggleMenu, isOpen }) => {
     const switchImg1 = useRef(null);
     const switchImg2 = useRef(null);
 
-    const isMobile = window.innerWidth <= 768;
+    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
 
     const handleClick = () => {
         setIsAnimating(true);
@@ -47,13 +47,6 @@ const NavBar = ({ toggleMenu, isOpen }) => {
                     });
                 }
             }, 'load');
-
-            gsap.to(".click-here", {
-              opacity: 0,
-              // display: 'none',
-              duration: 0.5,
-              ease: 'power4.out',
-            }, 'load')
 
             setIsLoading(false)
         }
@@ -94,18 +87,17 @@ const NavBar = ({ toggleMenu, isOpen }) => {
     };
 
     return (
-        <nav className="text-white flex w-screen p-4 items-center justify-between">
-            <div className={`nav-left items-center text-lg gap-20 w-[30%] hidden`}>
-            {/* <div className={`nav-left items-center text-lg gap-20 w-[30%] hidden sm:flex`}> */}
-                <div className="nav-games flex items-center">
+        <nav className="navbar-main text-white flex w-screen p-4 items-center justify-between">
+            <div className={`nav-left items-center text-lg gap-20 w-[30%] hidden sm:flex`}>
+                <div className="nav-games flex items-center gap-2 cursor-pointer hover:text-[#46BADD] transition-colors duration-300">
                     <img src="/assets/games.png" alt="" />
                     <h4>Games</h4>
                 </div>
-                <div className="nav-store flex items-center">
+                <div className="nav-store flex items-center gap-2 cursor-pointer hover:text-[#ED5F55] transition-colors duration-300">
                     <img src="/assets/store.png" alt="" />
                     <h4>Store</h4>
                 </div>
-                <div className="search flex items-center justify-center bg-[#1c1d23] px-10 h-10 rounded-[30px] border border-[#32353c]">
+                <div className="search flex items-center justify-center bg-[#1c1d23] px-10 h-10 rounded-[30px] border border-[#32353c] hover:border-[#46BADD] transition-colors duration-300">
                     <img src="/assets/search_left.png" alt="" />
                     <input type="text" placeholder='Search Games...' className="bg-transparent text-sm px-3 focus:outline-none hover:outline-none" />
                     <img src="/assets/search_right.png" alt="" />
@@ -115,17 +107,16 @@ const NavBar = ({ toggleMenu, isOpen }) => {
                 <img ref={switchImg1} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleClick} className="w-[15rem] mt-[150vh]" src="/assets/nintendo_switch_1.svg" alt="" />
                 <img ref={switchImg2} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleClick} className="w-[15rem] mt-[150vh]" src="/assets/nintendo_switch_2.svg" alt="" />
             </div>
-            {/* <div className="nav-right hidden sm:flex items-center w-[30%] justify-center gap-10"> */}
-            <div className="nav-right hidden items-center w-[30%] justify-center gap-10">
-                <div className="shop">
+            <div className="nav-right hidden sm:flex items-center w-[30%] justify-center gap-10">
+                <div className="shop cursor-pointer hover:scale-110 transition-transform duration-300">
                     <img src="/assets/shopping_bag.png" alt="" />
                 </div>
-                <div className="nav-gold relative flex pl-2 pr-10 py-1 rounded-3xl bg-[#1c1d23] border border-[#32353c]">
+                <div className="nav-gold relative flex pl-2 pr-10 py-1 rounded-3xl bg-[#1c1d23] border border-[#32353c] hover:border-[#ED5F55] transition-colors duration-300">
                     <img src="/assets/gold_coin.png" alt="" />
                     <h4 className='pl-2'>69.000000</h4>
                     <img src="/assets/plus.png" className='absolute right-0 top-1/2 -translate-y-1/2 scale-150 translate-x-1' alt="" />
                 </div>
-                <div className="profile flex">
+                <div className="profile flex cursor-pointer hover:scale-110 transition-transform duration-300">
                     <img src="/assets/profile.png" alt="" />
                 </div>
             </div>

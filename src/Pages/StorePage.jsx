@@ -3,7 +3,7 @@ import gsap from 'gsap'
 import React from 'react'
 import { StoreCard } from '../components/StoreCard'
 import "./StorePage.css"
-// import RaquazaModel from '../components/RaquazaModel'
+
 
 const StorePage = () => {
 
@@ -81,19 +81,11 @@ const StorePage = () => {
         <img className='mario-img absolute' src="/assets/store_mario.png" alt="" />
         <img className='garoom-1 absolute -top-10 w-[3rem]' src="/assets/store_mushroom.png" alt="" />
         <img className='garoom-2 absolute -top-10 w-[3rem]' src="/assets/store_mushroom.png" alt="" />
-        {/* <h3 className='text-[2.5rem] w-1/2 text-white text-center'> */}
-          {/* Find the 
-          <span className='text-[#46BADD]'> Perfect System <br /></span>
-          for your  */}
-          {/* Gaming Needs. */}
           <div className="store-text-wrapper text-[2.5rem] text-white text-center">
             <h4 className='text-[2rem]'>Find the <span className='text-[#46BADD]'> Perfect System </span> for your</h4>
-            {/* <span className='text-[#46BADD]'> Perfect System </span> */}
-            {/* for your */}
             <div className="top">Gaming Needs</div>
-            <div className="bottom" aria-hidden="true">Gamind Needs</div>
+            <div className="bottom" aria-hidden="true">Gaming Needs</div>
           </div>
-        {/* </h3> */}
         <div className="switch-models flex scale-[0.6] gap-10">
           <StoreCard num={1} text={"Nintendo Switch OLED"} />
           <StoreCard num={2} text={"Nintendo Switch"} />

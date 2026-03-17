@@ -1,22 +1,49 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+
+const MAX_STARS = 40;
+const THROTTLE_MS = 50;
 
 const StarEffect = () => {
+  const starsRef = useRef([]);
+  const lastTimeRef = useRef(0);
+  const lastMouseRef = useRef({ x: 0, y: 0 });
+  const lastThrottleRef = useRef(0);
+  const animFrameRef = useRef(null);
+  const poolRef = useRef([]);
+
   useEffect(() => {
-    let stars = [];
+    const stars = starsRef.current;
+
+    const getElement = () => {
+      if (poolRef.current.length > 0) {
+        const el = poolRef.current.pop();
+        el.style.display = 'block';
+        return el;
+      }
+      const el = document.createElement('div');
+      el.className = 'star z-[9999]';
+      document.body.appendChild(el);
+      return el;
+    };
+
+    const releaseElement = (el) => {
+      el.style.display = 'none';
+      poolRef.current.push(el);
+    };
 
     class Star {
-      constructor(x, y, velocityX, velocityY) {
+      constructor(x, y, velocityX, velocityY, element) {
         this.x = x;
         this.y = y;
         this.finalSize = Math.random() * 5;
-        this.size = this.finalSize * 2; // Starting size is twice the final size
+        this.size = this.finalSize * 2;
         this.alpha = 1;
         this.velocityX = velocityX * 0.05;
         this.velocityY = 1 + Math.random() + velocityY * 0.05;
         this.gravity = 0.02;
         this.drag = 0.97;
-        this.turbulence = () => Math.random() * 0.5 - 0.25;
-        this.timeElapsed = 0; // Time since the star was created
+        this.timeElapsed = 0;
+        this.element = element;
       }
 
       draw() {
@@ -28,75 +55,83 @@ const StarEffect = () => {
       }
 
       update(deltaTime) {
-        this.x += this.velocityX + this.turbulence();
+        this.x += this.velocityX + (Math.random() * 0.5 - 0.25);
         this.velocityX *= this.drag;
         this.y += this.velocityY;
         this.velocityY += this.gravity;
-        this.alpha = Math.max(0, this.alpha - 0.05); // Adjust this value to make stars disappear faster
+        this.alpha = Math.max(0, this.alpha - 0.05);
 
         this.timeElapsed += deltaTime;
-        if (this.timeElapsed < 1000) { // Reduce this duration to make the size change quicker
-          this.size = this.finalSize * 2 - (this.finalSize * this.timeElapsed / 1000);
+        if (this.timeElapsed < 800) {
+          this.size = this.finalSize * 2 - (this.finalSize * this.timeElapsed / 800);
         } else {
           this.size = this.finalSize;
         }
 
         this.draw();
       }
-
-      remove() {
-        this.element.remove();
-      }
     }
 
-    let lastMouseX = 0;
-    let lastMouseY = 0;
-    let mouseVelocityX = 0;
-    let mouseVelocityY = 0;
-
     const addStar = (e) => {
-      mouseVelocityX = e.clientX - lastMouseX;
-      mouseVelocityY = e.clientY - lastMouseY;
-      lastMouseX = e.clientX;
-      lastMouseY = e.clientY;
+      const now = Date.now();
+      if (now - lastThrottleRef.current < THROTTLE_MS) return;
+      lastThrottleRef.current = now;
 
-      let randomOffsetX = (Math.random() - 0.5) * 100; 
-      let randomOffsetY = (Math.random() - 0.5) * 100;
+      const mouseVelocityX = e.clientX - lastMouseRef.current.x;
+      const mouseVelocityY = e.clientY - lastMouseRef.current.y;
+      lastMouseRef.current.x = e.clientX;
+      lastMouseRef.current.y = e.clientY;
 
-      const star = new Star(e.clientX, e.clientY, mouseVelocityX + randomOffsetX, mouseVelocityY + randomOffsetY);
-      star.element = document.createElement('div');
-      star.element.className = 'star z-[9999]';
-      document.body.appendChild(star.element);
+      const randomOffsetX = (Math.random() - 0.5) * 100;
+      const randomOffsetY = (Math.random() - 0.5) * 100;
 
+      // Remove oldest stars if at capacity
+      while (stars.length >= MAX_STARS) {
+        const old = stars.shift();
+        releaseElement(old.element);
+      }
+
+      const element = getElement();
+      const star = new Star(
+        e.clientX, e.clientY,
+        mouseVelocityX + randomOffsetX,
+        mouseVelocityY + randomOffsetY,
+        element
+      );
       stars.push(star);
     };
 
     window.addEventListener('mousemove', addStar);
-    window.addEventListener('mousedown', addStar);
 
     const update = (time = 0) => {
       const deltaTime = time - (lastTimeRef.current || time);
       lastTimeRef.current = time;
 
-      stars.forEach(star => star.update(deltaTime));
-      stars = stars.filter(star => {
-        if (star.alpha > 0 && star.y < window.innerHeight && star.x > 0 && star.x < window.innerWidth) {
-          return true;
-        } else {
-          star.remove();
-          return false;
+      for (let i = stars.length - 1; i >= 0; i--) {
+        const star = stars[i];
+        star.update(deltaTime);
+        if (star.alpha <= 0 || star.y > window.innerHeight || star.x < 0 || star.x > window.innerWidth) {
+          releaseElement(star.element);
+          stars.splice(i, 1);
         }
-      });
+      }
 
-      requestAnimationFrame(update);
+      animFrameRef.current = requestAnimationFrame(update);
     };
 
-    let lastTimeRef = { current: 0 };
-    update();
+    animFrameRef.current = requestAnimationFrame(update);
 
     return () => {
       window.removeEventListener('mousemove', addStar);
-      window.removeEventListener('mousedown', addStar);
+      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+      stars.forEach(star => {
+        if (star.element.parentNode) star.element.parentNode.removeChild(star.element);
+      });
+      poolRef.current.forEach(el => {
+        if (el.parentNode) el.parentNode.removeChild(el);
+      });
+      starsRef.current = [];
+      poolRef.current = [];
     };
   }, []);
 

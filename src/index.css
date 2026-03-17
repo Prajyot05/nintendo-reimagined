@@ -48,7 +48,6 @@ body {
 }
 
 .home > h1{
-/* .b-canvas{ */
     font-weight: bold;
     background: linear-gradient(to right, #46BADD, #ED5F55);
     background-clip: text;
@@ -63,16 +62,6 @@ body {
     0 0 5px #b9b9b9, 
     0 0 5px #b9b9b9, 
     0 0 10px #b9b9b9, 
-    /* 0 0 40px #ff00ff, 
-    0 0 80px #ff00ff, 
-    0 0 90px #ff00ff, 
-    0 0 100px #ff00ff, 
-    0 0 150px #ff00ff; */
-    /* 0 0 20px #ef0004, 
-    0 0 40px #ef0004, 
-    0 0 50px #ef0004, 
-    0 0 60px #ef0004, 
-    0 0 80px #ef0004; */
     0 0 10px #ef0004, 
     0 0 10px #ef0004, 
     0 0 10px #ef0004, 
@@ -94,8 +83,30 @@ body {
   transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
 }
 
+/* Back to Top Button */
+.back-to-top {
+  background: linear-gradient(135deg, #46BADD, #ED5F55);
+  box-shadow: 0 4px 15px rgba(70, 186, 221, 0.3), 0 4px 15px rgba(237, 95, 85, 0.3);
+  border: none;
+  outline: none;
+}
+
+.back-to-top:hover {
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 8px 25px rgba(70, 186, 221, 0.5), 0 8px 25px rgba(237, 95, 85, 0.5);
+}
+
+/* Hide scrollbar for mobile card carousel */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 @media  (max-width: 764px) {
-  .second-section{
+  .second-section .hidden.lg\\:block{
     display: none;
   }
 }

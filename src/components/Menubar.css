@@ -1,9 +1,9 @@
-nav {
+.top-right {
     user-select: none;
     transition: transform 0.5s cubic-bezier(.3, 1.4, .5, .9);
   }
 
-nav.open {
+.top-right.open {
     transform: translateX(0px) translateY(100px);
 }
 
@@ -25,7 +25,7 @@ nav.open {
     transform: rotate(180deg);
 }
   
-nav.open .disc {
+.top-right.open .disc {
     pointer-events: auto;
     opacity: 1;
 }
@@ -42,7 +42,6 @@ nav.open .disc {
     right: calc(1 * 50px);
     bottom: calc(1 * 50px);
     background: #1F1E1E; 
-
   }
   
   .l2 {
@@ -72,23 +71,22 @@ nav.open .disc {
     box-shadow: 0 0 50px -14px #c92a22;
   }
   
-
-  nav.open .l1, nav.open .l2, nav.open .l3, nav.open .l4, nav.open .l5 {
+  .top-right.open .l1, .top-right.open .l2, .top-right.open .l3, .top-right.open .l4, .top-right.open .l5 {
     transition-delay: calc(0.5s / 5);
     transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 180deg);
     opacity: 1;
   }
   
-  nav.open .l1:hover, nav.open .l2:hover, nav.open .l3:hover, nav.open .l4:hover, nav.open .l5:hover {
+  .top-right.open .l1:hover, .top-right.open .l2:hover, .top-right.open .l3:hover, .top-right.open .l4:hover, .top-right.open .l5:hover {
     transition-delay: 0s;
     color: rgba(255, 255, 255, 1); 
   }
   
-  nav.open .l1:active, nav.open .l2:active, nav.open .l3:active, nav.open .l4:active, nav.open .l5:active {
+  .top-right.open .l1:active, .top-right.open .l2:active, .top-right.open .l3:active, .top-right.open .l4:active, .top-right.open .l5:active {
     color: rgba(255, 255, 255, 1); 
   }
   
-  nav.open .toggle {
+  .top-right.open .toggle {
     transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 0, 0deg);
   }
   
@@ -104,17 +102,17 @@ nav.open .disc {
   }
   
   .toggle:hover {
-    background: rgba(204, 171, 0, 1); /* Approximation for shade(gold, 90%) */
+    background: rgba(204, 171, 0, 1);
     text-decoration: underline;
   }
   
   .toggle:active {
-    background: rgba(153, 128, 0, 1); /* Approximation for shade(gold, 50%) */
-    color: rgba(255, 215, 0, 0.5); /* Approximation for rgba($color-inner, .5) */
+    background: rgba(153, 128, 0, 1);
+    color: rgba(255, 215, 0, 0.5);
     transform: scale(0.9);
     transition-duration: 0s;
   }
   
-  nav.open .toggle {
+  .top-right.open .toggle {
     transform: rotate3d(0, 0, 1, 0deg);
   }

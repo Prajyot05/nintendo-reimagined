@@ -6,10 +6,14 @@ import './Slider.css'
 const Carousel = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const listRef = useRef(null);
-    // const runningTimeRef = useRef(null);
     const nextBtnRef = useRef(null);
     const prevBtnRef = useRef(null);
     const [isBtnDisabled, setIsBtnDisabled] = useState(false);
+    const runTimeOutRef = useRef(null);
+    const runNextAutoRef = useRef(null);
+
+    const timeRunning = 3000;
+    const timeAutoNext = 7000;
 
     const handleBtnClick = () => {
         setIsBtnDisabled(true);
@@ -66,48 +70,12 @@ const Carousel = () => {
         },
       ];
 
-    // let runTimeOut;
-    // let runNextAuto;
-
-    // const timeRunning = 3000;
-    // const timeAutoNext = 7000;
-
-    useEffect(() => {
-        const nextBtn = nextBtnRef.current;
-        const prevBtn = prevBtnRef.current;
-
-        const handleNextClick = () => showSlider('next');
-        const handlePrevClick = () => showSlider('prev');
-
-        nextBtn.addEventListener('click', handleNextClick);
-        prevBtn.addEventListener('click', handlePrevClick);
-
-        // Start the initial animation
-        // resetTimeAnimation();
-        // runNextAuto = setTimeout(() => {
-        //     nextBtn.click();
-        // }, timeAutoNext);
-
-        return () => {
-            nextBtn.removeEventListener('click', handleNextClick);
-            prevBtn.removeEventListener('click', handlePrevClick);
-            // clearTimeout(runTimeOut);
-            // clearTimeout(runNextAuto);
-        };
-    }, []);
-
-    // const resetTimeAnimation = () => {
-    //     const runningTime = runningTimeRef.current;
-    //     runningTime.style.animation = 'none';
-    //     runningTime.offsetHeight; /* trigger reflow */
-    //     runningTime.style.animation = null;
-    //     runningTime.style.animation = 'runningTime 7s linear 1 forwards';
-    // };
-
     const showSlider = (type) => {
         const list = listRef.current;
         const nextBtn = nextBtnRef.current;
         const prevBtn = prevBtnRef.current;
+
+        if (!list || !nextBtn || !prevBtn) return;
 
         nextBtn.classList.add('disabled');
         prevBtn.classList.add('disabled');
@@ -122,22 +90,32 @@ const Carousel = () => {
             list.classList.add('prev');
         }
 
-        // clearTimeout(runTimeOut);
+        clearTimeout(runTimeOutRef.current);
+        runTimeOutRef.current = setTimeout(() => {
+            list.classList.remove('next');
+            list.classList.remove('prev');
+            nextBtn.classList.remove('disabled');
+            prevBtn.classList.remove('disabled');
+        }, timeRunning);
 
-        // runTimeOut = setTimeout(() => {
-        //     list.classList.remove('next');
-        //     list.classList.remove('prev');
-        //     nextBtn.classList.remove('disabled');
-        //     prevBtn.classList.remove('disabled');
-        // }, timeRunning);
-
-        // clearTimeout(runNextAuto);
-        // runNextAuto = setTimeout(() => {
-        //     nextBtn.click();
-        // }, timeAutoNext);
-
-        // resetTimeAnimation();
+        // Reset auto-advance timer
+        clearTimeout(runNextAutoRef.current);
+        runNextAutoRef.current = setTimeout(() => {
+            showSlider('next');
+        }, timeAutoNext);
     };
+
+    useEffect(() => {
+        // Start auto-advance
+        runNextAutoRef.current = setTimeout(() => {
+            showSlider('next');
+        }, timeAutoNext);
+
+        return () => {
+            clearTimeout(runTimeOutRef.current);
+            clearTimeout(runNextAutoRef.current);
+        };
+    }, []);
 
     return (
         <div className="carousel w-full h-[110vh] overflow-x-hidden relative z-[101]">
@@ -145,8 +123,6 @@ const Carousel = () => {
             <div className="list" ref={listRef}>
                 {items.map((item, index) => (
                     <div key={index} className={`item w-[8rem] h-[8rem] lg:w-[10rem] lg:h-[10rem] absolute top-[85%] left-[70%] transform -translate-y-[70%] rounded-3xl ${index === currentIndex ? 'active' : ''}`} style={{ backgroundImage: `url(${item.backgroundImg})`, overflow: 'hidden' }}>
-
-                        {/* <div style={{ content: '""', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', zIndex: 1}}></div> */}
 
                         <div className={`${index === currentIndex ? 'absolute' : 'hidden'}`} style={{ content: '""', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', zIndex: 1}}></div>
 
@@ -158,19 +134,19 @@ const Carousel = () => {
             </div>
 
             <div className="arrows absolute bottom-5 left-5 lg:bottom-24 lg:left-28">
-                <button className="prev-btn w-[6rem] h-[6rem] flex items-center justify-center rounded-full bg-gray-800 hover:bg-gray-600 border-none outline-none text-xl font-bold" onClick={handleBtnClick} disabled={isBtnDisabled} ref={prevBtnRef}>
+                <button className="prev-btn w-[6rem] h-[6rem] flex items-center justify-center rounded-full bg-gray-800 hover:bg-gray-600 border-none outline-none text-xl font-bold" onClick={() => { handleBtnClick(); showSlider('prev'); }} disabled={isBtnDisabled} ref={prevBtnRef}>
                     <div className="prev-in p-5 rounded-full border-2 border-gray-400">
                         <img className='rotate-180 w-[2rem]' src="/assets/arrow.svg" alt="" />
                     </div>
                 </button>
-                <button className="next-btn ml-10 w-[6rem] h-[6rem] flex items-center justify-center rounded-full bg-gray-800 hover:bg-gray-600 border-none outline-none text-xl font-bold" onClick={handleBtnClick} disabled={isBtnDisabled} ref={nextBtnRef}>
+                <button className="next-btn ml-10 w-[6rem] h-[6rem] flex items-center justify-center rounded-full bg-gray-800 hover:bg-gray-600 border-none outline-none text-xl font-bold" onClick={() => { handleBtnClick(); showSlider('next'); }} disabled={isBtnDisabled} ref={nextBtnRef}>
                     <div className="next-in p-5 rounded-full  border-2 border-gray-400">
                         <img className='w-[2rem]' src="/assets/arrow.svg" alt="" />
                     </div>
                 </button>
             </div>
 
-            {/* <div className="timeRunning" ref={runningTimeRef}></div> */}
+            <div className="timeRunning"></div>
         </div>
     );
 };

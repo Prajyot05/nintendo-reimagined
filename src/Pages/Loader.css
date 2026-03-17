@@ -1,71 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
 
-.words {
-    color: #46BADD;
-    font-size: 0;
-    line-height: 1.5;
-}
-  
-.words span {
-    font-size: 9rem;
-    font-family: 'Jost', sans-serif;
-    font-weight: 600;
-    letter-spacing: 10px;
-    display: inline-block;
-    animation: move 3s ease-in-out infinite;
-    /* background-clip: text; */
-    /* -webkit-background-clip: text; */
-    color: #ED5F55;
+.loader-content {
+  pointer-events: none;
 }
 
-.loader-bg{
-    /* background: linear-gradient(to bottom, #46BADD, #ED5F55); */
+.loader-logo {
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
 }
-  
-@keyframes move {
-    0% {
-      transform: translate(-30%, 0);
-    }
-    50% {
-      text-shadow: 0 25px 50px rgba(0, 0, 0, 0.75);
-    }
-    100% {
-      transform: translate(30%, 0);
-    }
+
+.loader-logo img {
+  filter: brightness(0) invert(1);
 }
-  
-.words span:nth-child(2) {
-    animation-delay: 0.5s;
+
+.loader-progress {
+  box-shadow: 0 0 10px rgba(70, 186, 221, 0.5), 0 0 20px rgba(237, 95, 85, 0.3);
 }
-  
-.words span:nth-child(3) {
-    animation-delay: 1s;
-}
-  
-.words span:nth-child(4) {
-    animation-delay: 1.5s;
-}
-  
-.words span:nth-child(5) {
-    animation-delay: 2s;
-}
-  
-.words span:nth-child(6) {
-    animation-delay: 2.5s;
-}
-  
-.words span:nth-child(7) {
-    animation-delay: 3s;
-}
-  
-.words span:nth-child(8) {
-    animation-delay: 3.5s;
-}
-  
-.words span:nth-child(9) {
-    animation-delay: 4s;
-}
-  
-.words span:nth-child(10) {
-    animation-delay: 4.5s;
+
+.loader-progress-container {
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
 }

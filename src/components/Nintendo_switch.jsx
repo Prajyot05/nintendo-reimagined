@@ -8,64 +8,66 @@ Source: https://sketchfab.com/3d-models/nintendo-switch-b94e6a6a8c564fee81c2d794
 Title: Nintendo Switch
 */
 
-import { Environment, useGLTF, useScroll } from '@react-three/drei'
+import { Environment, useGLTF } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber';
-import { useEffect, useRef, useState, useLayoutEffect } from 'react'
-import { useControls } from "leva";
-import {gsap} from 'gsap';
-import {useGSAP} from '@gsap/react'
+import { useEffect, useRef, useLayoutEffect } from 'react'
+import { gsap } from 'gsap';
+import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-
 
 
 export default function Nintendo_switch(props) {
   const { nodes, materials } = useGLTF('/models/switch.gltf')
 
   const nSwitch = useRef();
-  const { scene, camera } = useThree();
+  const lightRef = useRef();
+  const { scene } = useThree();
   const tl = gsap.timeline();
 
-
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (event) => {
-    setMousePosition({
-      x: (event.clientX / window.innerWidth) * 4 - 1,
-      y: (event.clientY / window.innerHeight) * 4 + 1,
-    });
-  };
+  // Use a ref for mouse position to avoid re-renders
+  const mousePosition = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
+    const handleMouseMove = (event) => {
+      mousePosition.current.x = (event.clientX / window.innerWidth) * 4 - 1;
+      mousePosition.current.y = (event.clientY / window.innerHeight) * 4 + 1;
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
-  
 
-  //Loading animation
+  // Update light position every frame from the ref (no re-renders)
+  useFrame(() => {
+    if (lightRef.current) {
+      lightRef.current.position.x = mousePosition.current.x;
+      lightRef.current.position.y = mousePosition.current.y;
+    }
+  });
+
+  // Loading animation
   useGSAP(() => {
     gsap.to(scene.position, {
-      x:0,y:-1.3,z:0,
-      duration:2,
-      delay:1
+      x: 0, y: -1.3, z: 0,
+      duration: 2,
+      delay: 1
     })
     gsap.to(scene.rotation, {
-      x:1.8,y:0,z:0,
-      duration:2,
-      delay:1, 
+      x: 1.8, y: 0, z: 0,
+      duration: 2,
+      delay: 1,
     })
   })
 
-
-  //OnScroll Animations 
+  // OnScroll Animations 
   useLayoutEffect(() => {
     new ScrollTrigger({});
-    // component About.tsx
     tl.to(nSwitch.current.position, {
       x: 0,
       y: -1.5,
-      z: 0,   
+      z: 0,
       scrollTrigger: {
         trigger: ".second-section",
         start: "top bottom",
@@ -115,9 +117,10 @@ export default function Nintendo_switch(props) {
   return (
     <>
       <directionalLight
+        ref={lightRef}
         castShadow
         intensity={2}
-        position={[mousePosition.x , mousePosition.y, 1]}
+        position={[0, 0, 1]}
       />
       <Environment preset='night' environmentIntensity={0.1}/>
       <ambientLight intensity={2} />
