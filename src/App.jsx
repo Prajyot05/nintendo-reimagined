@@ -1,18 +1,18 @@
 import NavBar from "./components/NavBar"
-import HomePage from "./Pages/HomePage"
+import HomePage from "./pages/HomePage"
 import CanvasContainer from "./components/CanvasContainer"
 import { ReactLenis, useLenis } from 'lenis/react'
-import Console from "./Pages/Console"
-import StorePage from "./Pages/StorePage"
-import WorldMap from "./Pages/WorldMap"
-import GamesGallery from "./Pages/GamesGallery"
+import Console from "./pages/Console"
+import StorePage from "./pages/StorePage"
+import WorldMap from "./pages/WorldMap"
+import GamesGallery from "./pages/GamesGallery"
 import { lazy, Suspense, useContext, useEffect, useState, useRef } from "react"
 import { LoadingContext } from "./context/LoadingContext"
 import StarryMouse from "./components/StarryMouse"
-import FooterPage from "./Pages/FooterPage"
+import FooterPage from "./pages/FooterPage"
 import Menubar from "./components/Menubar"
 import NavbarParent from "./components/NavbarParent"
-import Loader from "./Pages/Loader"
+import Loader from "./pages/Loader"
 
 
 const App = () => {
